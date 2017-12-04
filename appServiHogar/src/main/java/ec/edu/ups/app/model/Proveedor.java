@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -13,25 +14,34 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Proveedor {
 	@Id
 	@NotNull
+	@NotBlank
+	@Size(min=10, max=10)
 	private String cedula;
 	
 	@NotBlank
 	@Size(min=4, max=20)
 	private String nombres;
 	
+	@NotBlank
 	@Size(min=4, max=20)
 	private String direccion;
 	
-	private int telefono;
+	@Size(min=9, max=9)
+	@Pattern(regexp = "[\\s]*[0-9]*[0-9]+",message="Ingresar solo números")
+	private String telefono;
 	
-	private int celular;
+	@Size(min=10, max=10)
+	@Pattern(regexp = "[\\s]*[0-9]*[0-9]+",message="Ingresar solo números")
+	private String celular;
 	
+	@NotBlank
 	@Email
 	private String email;
 	
 	@Min(value=1, message="Valor minimo 1")
 	private int experiencia;
 	
+	@NotBlank
 	@Size(min=4, max=60)
 	private String descripcion;
 
@@ -57,16 +67,17 @@ public class Proveedor {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	public int getTelefono() {
+	
+	public String getTelefono() {
 		return telefono;
 	}
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	public int getCelular() {
+	public String getCelular() {
 		return celular;
 	}
-	public void setCelular(int celular) {
+	public void setCelular(String celular) {
 		this.celular = celular;
 	}
 	public String getEmail() {

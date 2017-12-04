@@ -72,9 +72,8 @@ public class ProveedorControlador {
 					return "registro-incorrecto";
 				}else{
 					provdao.guardar(proveedor);
-					init();
 					loadProveedores();
-					return "registro-correcto";
+					return "ProveedorCorrecto";
 				}
 				
 			}catch(Exception e){
