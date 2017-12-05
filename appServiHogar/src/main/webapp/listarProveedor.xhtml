@@ -10,15 +10,18 @@
 			<br/>
 			<div class="col-sm-6 col-lg-3">
             	<div class="input-group">
-                	<h:inputText value="#{proveedorControlador.id}" type="text" class="form-control" placeholder="Buscar"/>
+                	<h:inputText value="#{proveedorControlador.id}" type="text" class="form-control"/>
                     <span class="input-group-addon">
                     	<i class="now-ui-icons ui-1_zoom-bold"></i>
               		</span>
            		</div>
+           		<h:commandButton action="#{proveedorControlador.loadDatosBuscar(proveedor.cedula)}" value="Buscar" class="btn btn-primary btn-round">
+						<f:ajax render="listaProveedores"/>
+			    </h:commandButton>
       		</div>
 			<br/>
 			<h:outputText value="No existen Registros" rendered="#{empty proveedorControlador.proveedores}" />
-			<h:dataTable value="#{proveedorControlador.proveedores}" var="proveedor" rendered="#{not empty proveedorControlador.proveedores}" border-collapse="collapse" width="100%">
+			<h:dataTable id="listaProveedores" value="#{proveedorControlador.proveedores}" var="proveedor" rendered="#{not empty proveedorControlador.proveedores}" border-collapse="collapse" width="100%">
 				<h:column>
 					<f:facet name="header">Cedula</f:facet>
 					#{proveedor.cedula}
@@ -57,7 +60,7 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">Acciones</f:facet>
-					<a href="editar-persona.xhtml?id=#{proveedor.cedula}">Borrar</a>
+					<h:commandButton action="#{proveedorControlador.loadDatosEliminar(proveedor.cedula)}" value="Borrar" class="btn btn-primary btn-round"/>
 				</h:column>
 			</h:dataTable>
 
