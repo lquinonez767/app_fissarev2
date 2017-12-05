@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="AdminPage.xhtml">
+		<ui:define name="contenido_admin">
+		<h:form>
+			<br/>
+			<div class="col-sm-6 col-lg-3">
+            	<div class="input-group">
+                	<h:inputText value="#{proveedorControlador.id}" type="text" class="form-control" placeholder="Buscar"/>
+                    <span class="input-group-addon">
+                    	<i class="now-ui-icons ui-1_zoom-bold"></i>
+              		</span>
+           		</div>
+      		</div>
+			<br/>
+			<h:outputText value="No existen Registros" rendered="#{empty proveedorControlador.proveedores}" />
+			<h:dataTable value="#{proveedorControlador.proveedores}" var="proveedor" rendered="#{not empty proveedorControlador.proveedores}" border-collapse="collapse" width="100%">
+				<h:column>
+					<f:facet name="header">Cedula</f:facet>
+					#{proveedor.cedula}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Nombres</f:facet>
+					#{proveedor.nombres}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Direccion</f:facet>
+					#{proveedor.direccion}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Telefono</f:facet>
+					#{proveedor.telefono}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Celular</f:facet>
+					#{proveedor.celular}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Email</f:facet>
+					#{proveedor.email}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Experiencia</f:facet>
+					#{proveedor.experiencia}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Info. Adicional</f:facet>
+					#{proveedor.descripcion}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Acciones</f:facet>
+					<a href="editarProveedor.xhtml?id=#{proveedor.cedula}">Editar</a>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Acciones</f:facet>
+					<a href="editar-persona.xhtml?id=#{proveedor.cedula}">Borrar</a>
+				</h:column>
+			</h:dataTable>
+
+		</h:form></ui:define>
+	</ui:composition>
+</html>
