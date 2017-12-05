@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"> 
+
+<ui:composition template="plantilla.xhtml">
+		<ui:define name="tituloPrincipal">Fissare</ui:define>
+		<ui:define name="tituloSecundario">Hace tu vida más fácil ! </ui:define>
+		<ui:define name="contenido">
+
+
+
+<h:form >
+	<h:messages globalOnly="True"/>
+	<h:panelGrid columns="3">
+		<h:outputLabel value="Cedula" for="cedula"/>
+		<h:inputText value="#{personaControlador.persona.cedula}" class="form-control" id="cedula"/>	
+		<h:message for="cedula"/>
+		
+		<h:outputLabel value="Nombre" for="nombre"/>
+		<h:inputText value="#{personaControlador.persona.nombres}" class="form-control" id="nombre"/>	
+		<h:message for="nombre"/>
+		
+		<h:outputLabel value="Teléfono" for="telefono"/>
+		<h:inputText value="#{personaControlador.persona.telefono}" class="form-control" id="telefono"/>	
+		<h:message for="telefono"/>
+		
+		<h:outputLabel value="Email" for="email"/>
+		<h:inputText value="#{personaControlador.persona.email}" class="form-control" id="email"/>	
+		<h:message for="email"/>
+		
+		
+		<h:outputLabel value="Fecha Nac." for="fechaNacimiento"/>
+		<h:inputText value="#{personaControlador.persona.fechanacimiento}" class="form-control" id="fechaNacimiento">	
+			<f:convertDateTime pattern="yyyy-MM-dd"/>
+		</h:inputText>
+		<h:message for="fechaNacimiento"/>
+		
+		<h:commandButton action="#{personaControlador.guardar()}" value="Guardar" styleClass="btn btn-primary"/>
+	</h:panelGrid>
+	
+	<h:commandButton action="listado-persona" value="Listado Personas" immediate="true" />
+	
+</h:form>
+	</ui:define>
+	</ui:composition>
+ 
+</html>
