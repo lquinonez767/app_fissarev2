@@ -107,6 +107,12 @@ public class ProveedorControlador {
 			
 		}
 		
+		public String loadDatosBuscar(String cedula){
+			System.out.println("holaaaaaa");
+			proveedor = provdao.leer(cedula);
+			return "listarProveedor";
+		}
+		
 		public String loadDatosEditar(String cedula){
 			proveedor = provdao.leer(cedula);
 			return "editarProveedor";
