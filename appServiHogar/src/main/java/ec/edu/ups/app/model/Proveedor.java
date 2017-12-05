@@ -2,6 +2,7 @@ package ec.edu.ups.app.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -11,6 +12,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
+@Table(name="tbl_proveedor")
 public class Proveedor {
 	@Id
 	@NotNull
