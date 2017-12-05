@@ -29,3 +29,6 @@ de las características de la app.
 Envia costos de servicio, beneficios, entre otros.
 El cobro es una tarifa fija por servicios realizados, el cual corresponde a un porcentaje de la
 factura.
+
+Diagrama de Clases:
+https://drive.google.com/open?id=1GhXl-BgsIxUE_H0wSFoD1g4OGwc785LK
