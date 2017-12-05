@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
@@ -12,6 +13,7 @@ import ec.edu.ups.app.data.ProveedorDAO;
 import ec.edu.ups.app.model.Proveedor;
 
 @ManagedBean
+@ViewScoped	
 public class ProveedorControlador {
 	private Proveedor proveedor;
 	private List<Proveedor> proveedores;
@@ -52,6 +54,7 @@ public class ProveedorControlador {
 
 	public void setId(String id) {
 		this.id = id;
+		loadDatosEditar(id);
 	}
 
 	public ProveedorDAO getProvdao() {
@@ -63,7 +66,26 @@ public class ProveedorControlador {
 	}
 
 	//funciones
-
+	
+	public String editar(){
+		try{
+			if(this.id!=null){
+				System.out.println(proveedor);
+				provdao.guardar(proveedor);
+				loadProveedores();
+				return "listarProveedor";
+			}else{
+				provdao.insertar(proveedor);
+				return "RegistroProveedores";
+			}
+		}catch(Exception e){
+			String errorMessage = getRootErrorMessage(e);
+            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
+            facesContext.addMessage(null, m);
+            return null; 
+		}
+		
+	}
 		public String guardar(){
 			try{ 
 				System.out.println("Holaaaaaaaaa");
@@ -86,7 +108,8 @@ public class ProveedorControlador {
 		}
 		
 		public String loadDatosEditar(String cedula){
-			return "datos_defecto";
+			proveedor = provdao.leer(cedula);
+			return "editarProveedor";
 		}
 		
 		public String loadDatosEliminar(String cedula){
