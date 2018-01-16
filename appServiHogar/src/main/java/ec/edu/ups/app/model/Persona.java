@@ -2,15 +2,14 @@ package ec.edu.ups.app.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -79,13 +78,13 @@ public class Persona {
 	private boolean chkCliente;
 	
 		
-	@OneToOne(cascade=CascadeType.ALL)
-	@PrimaryKeyJoinColumn
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="codigo", nullable=false)
 	private Categoria categoria;
 	
 	//bi-directional many-to-one association to Pedido
-	@OneToMany(mappedBy="persona",fetch=FetchType.LAZY)
-	private List<Pedido> pedidos;
+	//@OneToMany(mappedBy="persona",fetch=FetchType.LAZY)
+	//private List<Pedido> pedidos;
 	
 	public String getCedula() {
 		return cedula;
@@ -185,13 +184,13 @@ public class Persona {
 		this.categoria = categoria;
 	}
 
-	public List<Pedido> getPedidos() {
-		return pedidos;
-	}
+	//public List<Pedido> getPedidos() {
+	//	return pedidos;
+	//}
 
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
-	}
+	//public void setPedidos(List<Pedido> pedidos) {
+	//	this.pedidos = pedidos;
+	//}
 
 	@Override
 	public String toString() {
