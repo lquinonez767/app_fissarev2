@@ -1,5 +1,8 @@
 package ec.edu.ups.app.model;
 
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
@@ -14,6 +17,7 @@ public class Servicio {
 	@NotNull
 	@NotBlank
 	@Size(min=5, max=5)
+	@Column(unique=true, nullable=false)
 	private String codigo;
 	
 	@NotBlank
@@ -23,7 +27,12 @@ public class Servicio {
 	@NotBlank
 	@Size(min=4, max=20)
 	private String descripcion;
-
+	
+	
+	private double price;
+	
+	// get an set
+	
 	public String getCodigo() {
 		return codigo;
 	}
@@ -48,10 +57,24 @@ public class Servicio {
 		this.descripcion = descripcion;
 	}
 
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
 	@Override
 	public String toString() {
-		return "Servicio [codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + "]";
+		return "Servicio [codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", price=" + price
+				+ "]";
 	}
+	
+	
+	
+	
+	
 	
 	
 }

@@ -35,6 +35,10 @@
 					#{servicio.descripcion}
 				</h:column>
 				<h:column>
+					<f:facet name="header">Precio</f:facet>
+					#{servicio.price}
+				</h:column>
+				<h:column>
 					<f:facet name="header">Acciones</f:facet>
 					<a href="editarServicio.xhtml?id=#{servicio.codigo}">Editar</a>
 				</h:column>

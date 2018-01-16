@@ -77,7 +77,7 @@ public class ServicioControlador {
 						return "listarServicio";
 					}else{
 						servdao.insertar(servicio);
-						return "RegistroServicios";
+						return "listarServicio";
 					}
 				}catch(Exception e){
 					String errorMessage = getRootErrorMessage(e);
@@ -90,11 +90,11 @@ public class ServicioControlador {
 				public String guardar(){
 					try{ 
 						if(servicio.getCodigo().equals("")){
-							return "AdminPage";
+							return "listarServicio";
 						}else{
 							servdao.guardar(servicio);
 							loadServicios();
-							return "AdminPage";
+							return "listarServicio";
 						}
 						
 					}catch(Exception e){
