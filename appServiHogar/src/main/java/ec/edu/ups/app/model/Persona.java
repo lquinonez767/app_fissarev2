@@ -1,77 +1,205 @@
 package ec.edu.ups.app.model;
 
-import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
+
 
 @Entity
 @Table(name="tbl_persona")
+@NamedQuery(name="Persona.findAll", query="SELECT p FROM Persona p")
 public class Persona {
-
 	
 	@Id
-	@Column(name="per_cedula",length=10)
-	@Size(min=10, max=10, message="Debe tener 10 digitos")
-	@NotEmpty(message="Ingrese la cedula")
+	@NotNull
+	@NotBlank
+	@Size(min=10, max=10)
+	@Column(name="per_cedula")
 	private String cedula;
 	
-	@NotNull
-	@Size(min=4,max=20)
+	@NotBlank
+	@Size(min=4, max=20)
 	@Column(name="per_nombres")
-	@NotEmpty(message="Ingrese el nombre")
 	private String nombres;
 	
+	@NotBlank
+	@Size(min=4, max=20)
+	@Column(name="per_direccion")
+	private String direccion;
+	
+	@Size(min=9, max=9)
+	@Pattern(regexp = "[\\s]*[0-9]*[0-9]+",message="Ingresar solo números")
+	@Column(name="per_telefono")
+	private String telefono;
+	
+	@Size(min=10, max=10)
+	@Pattern(regexp = "[\\s]*[0-9]*[0-9]+",message="Ingresar solo números")
+	@Column(name="per_celular")
+	private String celular;
+	
+	@NotBlank
 	@Email
 	@Column(name="per_email")
-	@NotEmpty(message="Ingrese el correo")
 	private String email;
 	
-	@Column(name="per_fecha_nac")
-	@Temporal(TemporalType.DATE)
-	@NotEmpty(message="Ingrese la fecha de nacimiento")
-	private Date fechanacimiento;
+	@Min(value=1, message="Valor minimo 1")
+	@Column(name="per_experiencia")
+	private int experiencia;
 	
+	@NotBlank
+	@Size(min=4, max=60)
+	@Column(name="per_descripcion")
+	private String descripcion;
+	
+	@NotBlank
+	@Size(min=4, max=20)
+	@Column(name="per_certServicios")
+	private String certServicios;
+	
+	@Column(name="per_chkProveedor")
+	private boolean chkProveedor;
+	
+	@Column(name="per_chkCliente")
+	private boolean chkCliente;
+	
+		
+	@OneToOne(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private Categoria categoria;
+	
+	//bi-directional many-to-one association to Pedido
+	@OneToMany(mappedBy="persona",fetch=FetchType.LAZY)
+	private List<Pedido> pedidos;
 	
 	public String getCedula() {
 		return cedula;
 	}
+
 	public void setCedula(String cedula) {
 		this.cedula = cedula;
 	}
+
 	public String getNombres() {
 		return nombres;
 	}
+
 	public void setNombres(String nombres) {
 		this.nombres = nombres;
 	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
+	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Date getFechanacimiento() {
-		return fechanacimiento;
+
+	public int getExperiencia() {
+		return experiencia;
 	}
-	public void setFechanacimiento(Date fechanacimiento) {
-		this.fechanacimiento = fechanacimiento;
+
+	public void setExperiencia(int experiencia) {
+		this.experiencia = experiencia;
 	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+		
+		
+	}
+	
+	public String getCertServicios() {
+		return certServicios;
+	}
+
+	public void setCertServicios(String certServicios) {
+		this.certServicios = certServicios;
+	}
+
+	public boolean isChkProveedor() {
+		return chkProveedor;
+	}
+
+	public void setChkProveedor(boolean chkProveedor) {
+		this.chkProveedor = chkProveedor;
+	}
+
+	public boolean isChkCliente() {
+		return chkCliente;
+	}
+
+	public void setChkCliente(boolean chkCliente) {
+		this.chkCliente = chkCliente;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
 	@Override
 	public String toString() {
-		return "Persona [cedula=" + cedula + ", nombres=" + nombres + ", email=" + email + ", fechanacimiento="
-				+ fechanacimiento + "]";
+		return "Persona [cedula=" + cedula + ", nombres=" + nombres + ", direccion=" + direccion + ", telefono="
+				+ telefono + ", celular=" + celular + ", email=" + email + ", experiencia=" + experiencia
+				+ ", descripcion=" + descripcion + "]";
 	}
+
 	
-	
-	
+
 }
