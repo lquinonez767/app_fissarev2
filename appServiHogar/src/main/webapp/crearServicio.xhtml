@@ -23,6 +23,9 @@
 	                            <h:outputLabel value="Descripcion:" />
 	                            <h:inputText type="text" value="#{servicioControlador.servicio.descripcion}" class="form-control" id="descripcion"/>
 	                            <h:message for="descripcion"/>	
+	                            <h:outputLabel value="Precio:" />
+	                            <h:inputText type="text" value="#{servicioControlador.servicio.price}" class="form-control" id="precio"/>
+	                            <h:message for="precio"/>	
 	                            
 	                            <h:commandButton class="btn btn-primary btn-round" action="#{servicioControlador.guardar()}" value="Ingresar"/>
 	                            

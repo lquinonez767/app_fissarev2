@@ -2,6 +2,7 @@ package ec.edu.ups.app.model;
 
 import java.util.List;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -35,8 +36,9 @@ public class Servicio {
 	@Column(name="ser_descripcion")
 	private String descripcion;
 
+	private double price;
 	
-	
+	// get an set
 	
 	public String getCodigo() {
 		return codigo;
@@ -62,10 +64,24 @@ public class Servicio {
 		this.descripcion = descripcion;
 	}
 
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
 	@Override
 	public String toString() {
-		return "Servicio [codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + "]";
+		return "Servicio [codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", price=" + price
+				+ "]";
 	}
+	
+	
+	
+	
+	
 	
 	
 }
