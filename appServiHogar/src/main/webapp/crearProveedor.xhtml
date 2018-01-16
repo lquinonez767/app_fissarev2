@@ -15,31 +15,46 @@
                         <div  style="text-align: center;">
 	                     <h:panelGrid columns="3" style="margin: 0 auto;">
 	                           	<h:outputLabel value="Cedula:" />
-	                            <h:inputText type="text" value="#{proveedorControlador.proveedor.cedula}" class="form-control" id="cedula"/>
+	                            <h:inputText type="text" value="#{personaControlador.persona.cedula}" class="form-control" id="cedula"/>
 	                            <h:message for="cedula"/>
 	                        	<h:outputLabel value="Nombres:" />
-	                            <h:inputText type="text" value="#{proveedorControlador.proveedor.nombres}" class="form-control" id="nombres"/>
+	                            <h:inputText type="text" value="#{personaControlador.persona.nombres}" class="form-control" id="nombres"/>
 	                            <h:message for="nombres"/>	
 	                            <h:outputLabel value="Direccion:" />
-	                            <h:inputText type="text" value="#{proveedorControlador.proveedor.direccion}" class="form-control" id="direccion"/>
+	                            <h:inputText type="text" value="#{personaControlador.persona.direccion}" class="form-control" id="direccion"/>
 	                            <h:message for="direccion"/>	
 	                            <h:outputLabel value="Telefono:" />
-	                            <h:inputText type="text" value="#{proveedorControlador.proveedor.telefono}" class="form-control" id="telefono"/>
+	                            <h:inputText type="text" value="#{personaControlador.persona.telefono}" class="form-control" id="telefono"/>
 	                            <h:message for="telefono"/>
 	                            <h:outputLabel value="Celular:" />
-	                            <h:inputText type="text" value="#{proveedorControlador.proveedor.celular}" class="form-control" id="celular"/>
+	                            <h:inputText type="text" value="#{personaControlador.persona.celular}" class="form-control" id="celular"/>
 	                            <h:message for="celular"/>
 	                            <h:outputLabel value="Email:" />
-	                            <h:inputText type="text" value="#{proveedorControlador.proveedor.email}" class="form-control" id="email"/>
+	                            <h:inputText type="text" value="#{personaControlador.persona.email}" class="form-control" id="email"/>
 	                            <h:message for="email"/>			
 	                            <h:outputLabel value="Experiencia:" />
-	                            <h:inputText type="text" value="#{proveedorControlador.proveedor.experiencia}" class="form-control" id="experiencia"/>
+	                            <h:inputText type="text" value="#{personaControlador.persona.experiencia}" class="form-control" id="experiencia"/>
 	                            <h:message for="experiencia"/>
 	                            <h:outputLabel value="Info Adicional:" />
-	                            <h:inputText type="text" value="#{proveedorControlador.proveedor.descripcion}" class="form-control" id="descripcion"/>
+	                            <h:inputText type="text" value="#{personaControlador.persona.descripcion}" class="form-control" id="descripcion"/>
 	                            <h:message for="descripcion"/>	
+	                            <h:outputLabel value="Cert. Servicios:" />
+	                            <h:inputText type="text" value="#{personaControlador.persona.certServicios}" class="form-control" id="servicios"/>
+	                            <h:message for="servicios"/>	
+	                            
+	                            <h:outputLabel value="Proveedor:" />
+	                            <h:selectBooleanCheckbox value="#{personaControlador.persona.chkProveedor}"/>
+	    						<h:message for="proveedor"/>
+	    						<h:outputLabel value="Cliente:" />
+	                            <h:selectBooleanCheckbox value="#{personaControlador.persona.chkCliente}"/>
+	    						<h:message for="cliente"/>
+	    						<h:outputLabel value="Categoria:" />
+	    						<h:selectOneMenu id="categoria" value="#{categoriaControlador.categoria.codigo}">
+	    							<f:selectItem itemLabel="-- Seleccione --" itemValue=""/>
+	    							<f:selectItems value="#{categoriaControlador.listcategorias}"/>
+	    						</h:selectOneMenu>
 	                            <br/>
-	                            <h:commandButton class="btn btn-primary btn-round" action="#{proveedorControlador.guardar()}" value="Ingresar"/>
+	                            <h:commandButton class="btn btn-primary btn-round" action="#{personaControlador.guardar(categoriaControlador.categoria.codigo)}" value="Ingresar"/>
 	                            
 	                    </h:panelGrid>      
                         </div>      
