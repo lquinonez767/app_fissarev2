@@ -17,6 +17,11 @@ public class Testing {
 		this.description = description;
 	}
 	
+	@Override
+	public String toString() {
+		return "Testing [code=" + code + ", description=" + description + "]";
+	}
+	
 	
 	
 }
