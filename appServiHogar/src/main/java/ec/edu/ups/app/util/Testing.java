@@ -22,6 +22,10 @@ public class Testing {
 		return "Testing [code=" + code + ", description=" + description + "]";
 	}
 	
+	public String Save() {
+		return null;
+	}
+	
 	
 	
 }
