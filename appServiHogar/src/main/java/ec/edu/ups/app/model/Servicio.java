@@ -1,8 +1,5 @@
 package ec.edu.ups.app.model;
 
-import java.util.List;
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,7 +35,11 @@ public class Servicio {
 
 	private double price;
 	
-	// get an set
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="codigo", nullable=false)
+	private CategoriaServicio categoriaservicio;
+	
+	// get and set
 	
 	public String getCodigo() {
 		return codigo;
@@ -80,8 +81,15 @@ public class Servicio {
 	
 	
 	
-	
-	
+
+	public CategoriaServicio getCategoriaservicio() {
+		return categoriaservicio;
+	}
+
+	public void setCategoriaservicio(CategoriaServicio categoriaservicio) {
+		this.categoriaservicio = categoriaservicio;
+	}
+
 	
 	
 }

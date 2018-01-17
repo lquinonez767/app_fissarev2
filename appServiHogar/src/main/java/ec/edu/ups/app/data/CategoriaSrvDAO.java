@@ -9,10 +9,9 @@ import javax.persistence.Query;
 
 import ec.edu.ups.app.model.CategoriaServicio;
 
-
-
 @Stateless
 public class CategoriaSrvDAO {
+	
 	@Inject
 	private EntityManager em;
 	
@@ -24,12 +23,12 @@ public class CategoriaSrvDAO {
 		em.merge(catservicio);
 	}
 
-	public void borrar (String codigo){
+	public void borrar (int codigo){
 		em.remove(leer(codigo));
 	}
 	
-	public CategoriaServicio leer (String i){
-		CategoriaServicio p = em.find(CategoriaServicio.class, i);
+	public CategoriaServicio leer (int codigo){
+		CategoriaServicio p = em.find(CategoriaServicio.class, codigo);
 		return p;
 	}
 	
