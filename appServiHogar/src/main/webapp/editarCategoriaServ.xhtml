@@ -7,11 +7,15 @@
 	<ui:composition template="AdminPage.xhtml">
 		<ui:define name="contenido_admin">
 		<f:metadata>
-			<f:viewParam name="id" value="#{categoriaSrvControlador.catservicio.codigo}"/>
+			<f:viewParam name="id" value="#{categoriaSrvControlador.id}"/>
 		</f:metadata>
 		<h:form >
+		
+			<div  style="text-align: center;">
+                <h3 class="title">Editar Categorias de Servicios</h3>
+            </div>
+		
 			
-			<h:inputText value="#{categoriaSrvControlador.catservicio.codigo}" />
 			<h:messages globalOnly="True"/>
 			<h:panelGrid columns="3" style="margin: 0 auto;">
                	<h:outputLabel value="Codigo:" />
