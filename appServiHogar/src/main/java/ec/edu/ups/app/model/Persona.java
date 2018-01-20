@@ -1,8 +1,5 @@
 package ec.edu.ups.app.model;
 
-import java.util.List;
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -81,10 +78,6 @@ public class Persona {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="codigo", nullable=false)
 	private Categoria categoria;
-	
-	//bi-directional many-to-one association to Pedido
-	//@OneToMany(mappedBy="persona",fetch=FetchType.LAZY)
-	//private List<Pedido> pedidos;
 	
 	public String getCedula() {
 		return cedula;

@@ -9,8 +9,8 @@
 		<h:form >
 			<div style="text-align: center;">
                         <div  style="text-align: center;">
-                            <h3 class="title">Registro Proveedores</h3>
-                            <h5 class="description">Miles de clientes sabrán de ti y de tu experiencia. Registrate ya.</h5>
+                            <h3 class="title">Registro Personas</h3>
+                            <h5 class="description">Miles de clientes y proveedores sabrán de ti y de tu experiencia. Registrate ya.</h5>
                         </div>
                         <div  style="text-align: center;">
 	                     <h:panelGrid columns="3" style="margin: 0 auto;">
@@ -50,8 +50,8 @@
 	    						<h:message for="cliente"/>
 	    						<h:outputLabel value="Categoria:" />
 	    						<h:selectOneMenu id="categoria" value="#{categoriaControlador.categoria.codigo}">
-	    							<f:selectItem itemLabel="-- Seleccione --" itemValue=""/>
-	    							<f:selectItems value="#{categoriaControlador.listcategorias}"/>
+	    							<f:selectItem itemLabel="-- Seleccione --" itemValue="" class="dropdown-item"/>
+	    							<f:selectItems value="#{categoriaControlador.listcategorias}" class="dropdown-item"/>
 	    						</h:selectOneMenu>
 	                            <br/>
 	                            <h:commandButton class="btn btn-primary btn-round" action="#{personaControlador.guardar(categoriaControlador.categoria.codigo)}" value="Ingresar"/>

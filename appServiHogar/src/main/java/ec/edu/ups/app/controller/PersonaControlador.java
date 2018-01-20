@@ -1,5 +1,6 @@
 package ec.edu.ups.app.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -7,9 +8,12 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
+import ec.edu.ups.app.data.CategoriaPerDAO;
 import ec.edu.ups.app.data.PersonaDAO;
+import ec.edu.ups.app.model.Categoria;
 import ec.edu.ups.app.model.Persona;
 
 @ManagedBean
@@ -17,9 +21,8 @@ import ec.edu.ups.app.model.Persona;
 public class PersonaControlador {
 	
 	private Persona persona;
-	private CategoriaControlador catcontrolador;
-	
 	private List<Persona> personas;
+	private List<SelectItem> listpersonas;
 	private String id;
 	
 	@Inject
@@ -27,6 +30,10 @@ public class PersonaControlador {
 	
 	@Inject
 	private PersonaDAO pdao;
+	
+	@Inject
+	private CategoriaPerDAO catperdao;
+	
 	
 	@PostConstruct
 	public void init(){
@@ -57,6 +64,7 @@ public class PersonaControlador {
 
 	public void setId(String id) {
 		this.id = id;
+		loadDatosEditar(id);
 	}
 
 	public PersonaDAO getPdao() {
@@ -67,6 +75,21 @@ public class PersonaControlador {
 		this.pdao = pdao;
 	}
 	
+
+	public List<SelectItem> getListpersonas() {
+		this.listpersonas = new ArrayList<SelectItem>();
+		listpersonas.clear();
+		for (Persona cat : personas){
+			SelectItem catItem = new SelectItem(cat.getCedula(), cat.getNombres());
+			this.listpersonas.add(catItem);
+		}
+		return listpersonas;
+	}
+
+	public void setListpersonas(List<SelectItem> listpersonas) {
+		this.listpersonas = listpersonas;
+	}
+
 	//funciones
 	public String editar(){
 		try{
@@ -92,15 +115,14 @@ public class PersonaControlador {
 				System.out.println("Holaaaaaaaaa");
 				System.out.println(persona);
 				System.out.println(itemCategoria);
-				
-				System.out.println(catcontrolador.getCategorias());
-				//this.persona.setCategoria(itemCategoria);
+				persona.setCategoria(catperdao.leer(itemCategoria));
+				System.out.println(persona);
 				if(persona.getCedula().equals("")){
 					return "registro-incorrecto";
 				}else{
 					pdao.guardar(persona);
 					loadPersonas();
-					return "ProveedorCorrecto";
+					return "listarProveedor";
 				}
 				
 			}catch(Exception e){

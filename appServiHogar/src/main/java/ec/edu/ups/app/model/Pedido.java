@@ -1,5 +1,6 @@
 package ec.edu.ups.app.model;
 
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -27,6 +28,11 @@ public class Pedido {
 	@Temporal(TemporalType.DATE)
 	@NotNull(message="Ingrese la fecha")
 	private Date fecha;
+	
+	@Column(name="ped_hora")
+	@Temporal(TemporalType.TIME)
+	@NotNull(message="Ingrese la fecha")
+	private Date hora;
 	
 	@Column(name="ped_estado")
 	private String estado;
@@ -68,12 +74,22 @@ public class Pedido {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-
 	
+	public Date getHora() {
+		return hora;
+	}
+
+	public void setHora(Date hora) {
+		this.hora = hora;
+	}
+
 	@Override
 	public String toString() {
-		return "Pedido [codigo=" + codigo + ", fecha=" + fecha + ", estado=" + estado + "]";
+		return "Pedido [codigo=" + codigo + ", fecha=" + fecha + ", hora=" + hora + ", estado=" + estado + ", persona="
+				+ persona + "]";
 	}
+
+	
 	
 	
 	
