@@ -1,5 +1,6 @@
 package ec.edu.ups.app.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -7,6 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import ec.edu.ups.app.data.CategoriaPerDAO;
@@ -19,8 +21,8 @@ import ec.edu.ups.app.model.Persona;
 public class PersonaControlador {
 	
 	private Persona persona;
-	
 	private List<Persona> personas;
+	private List<SelectItem> listpersonas;
 	private String id;
 	
 	@Inject
@@ -71,6 +73,21 @@ public class PersonaControlador {
 
 	public void setPdao(PersonaDAO pdao) {
 		this.pdao = pdao;
+	}
+	
+
+	public List<SelectItem> getListpersonas() {
+		this.listpersonas = new ArrayList<SelectItem>();
+		listpersonas.clear();
+		for (Persona cat : personas){
+			SelectItem catItem = new SelectItem(cat.getCedula(), cat.getNombres());
+			this.listpersonas.add(catItem);
+		}
+		return listpersonas;
+	}
+
+	public void setListpersonas(List<SelectItem> listpersonas) {
+		this.listpersonas = listpersonas;
 	}
 
 	//funciones

@@ -50,8 +50,8 @@
 	    						<h:message for="cliente"/>
 	    						<h:outputLabel value="Categoria:" />
 	    						<h:selectOneMenu id="categoria" value="#{categoriaControlador.categoria.codigo}">
-	    							<f:selectItem itemLabel="-- Seleccione --" itemValue=""/>
-	    							<f:selectItems value="#{categoriaControlador.listcategorias}"/>
+	    							<f:selectItem itemLabel="-- Seleccione --" itemValue="" class="dropdown-item"/>
+	    							<f:selectItems value="#{categoriaControlador.listcategorias}" class="dropdown-item"/>
 	    						</h:selectOneMenu>
 	                            <br/>
 	                            <h:commandButton class="btn btn-primary btn-round" action="#{personaControlador.guardar(categoriaControlador.categoria.codigo)}" value="Ingresar"/>

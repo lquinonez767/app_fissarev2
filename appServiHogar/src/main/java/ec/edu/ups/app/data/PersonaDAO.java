@@ -14,8 +14,7 @@ public class PersonaDAO {
 	
 	@Inject
 	private EntityManager em;
-	@Inject
-	private PersonaDAO pdao;
+	
 	
 	public void insertar (Persona persona){
 		em.persist(persona);
