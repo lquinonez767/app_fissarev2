@@ -33,6 +33,7 @@ public class CategoriaSrvDAO {
 	}
 	
 	public List<CategoriaServicio> listadoCatServicios(){
+		System.out.println("Metodo listadoCatServicios() de CategoriaSrvDAO oooooooooooooooooo");
 		String jpql = "SELECT p FROM CategoriaServicio p";
 		Query query = em.createQuery(jpql, CategoriaServicio.class);
 		List<CategoriaServicio> listado = query.getResultList();
@@ -40,6 +41,7 @@ public class CategoriaSrvDAO {
 	} 
 	
 	public void guardar(CategoriaServicio catservicio){
+		System.out.println("Metodo guardar() de CategoriaSrvDAO oooooooooooooooooo");
 		CategoriaServicio p = leer(catservicio.getCodigo());
 		if (p==null)
 			insertar(catservicio);

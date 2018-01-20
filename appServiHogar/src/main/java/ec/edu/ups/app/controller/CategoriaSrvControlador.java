@@ -1,5 +1,6 @@
 package ec.edu.ups.app.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -58,6 +59,7 @@ public class CategoriaSrvControlador {
 
 	public void setId(String id) {
 		this.id = id;
+		loadDatosEditar(Integer.parseInt(id));
 	}
 
 	public FacesContext getFacesContext() {
@@ -78,6 +80,12 @@ public class CategoriaSrvControlador {
 
 	
 	public List<SelectItem> getListacategoriaservicios() {
+		this.listacategoriaservicios = new ArrayList<SelectItem>();
+		listacategoriaservicios.clear();
+		for (CategoriaServicio catser : catservicios){
+			SelectItem catItem = new SelectItem(catser.getCodigo(), catser.getNombreCategoriaServicio());
+			this.listacategoriaservicios.add(catItem);
+		}
 		return listacategoriaservicios;
 	}
 
@@ -90,6 +98,7 @@ public class CategoriaSrvControlador {
 	//-------- funciones
 	
 	public String editar(){
+		System.out.println("Metodo editar() de CategoriaSrvControlador rrrrrrrrrrrrrr");
 		try{
 			if(this.id!=null){
 				System.out.println(catservicio);
@@ -111,14 +120,10 @@ public class CategoriaSrvControlador {
 	
 	
 	public String guardar(){
-		try{ 
-			System.out.println("Entro en Categoria Servicio Controlador rrrrrrrrrrrrrr");
-			System.out.println(catservicio);
-			
+		try{
 			catsrvdao.guardar(catservicio);
 			loadCategoriaServicios();
-			return "listarCategoriaServicio";
-			
+			return "listarCategoriaServicio";			
 		}catch(Exception e){
 			String errorMessage = getRootErrorMessage(e);
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
@@ -130,29 +135,24 @@ public class CategoriaSrvControlador {
 	
 	
 	public String loadDatosBuscar(int codigo){
-		System.out.println("metodo loadDatosBuscar rrrrrrrrrrrrrr");
 		catservicio = catsrvdao.leer(codigo);
 		return "listarCategoriaServicio";
 	}
 	
 	public String loadDatosEditar(int codigo){
-		System.out.println("metodo loadDatosEditar rrrrrrrrrrrrrr");
 		catservicio = catsrvdao.leer(codigo);
 		return "editarCategoriaServ";
 	}
 	
 	public String loadDatosEliminar(int codigo){
-		System.out.println("metodo loadDatosElimiar rrrrrrrrrrrrrr");
 		catsrvdao.borrar(codigo);
 		init();
 		return "listarCategoriaServicio";
 	}
 	
-	
 	private void loadCategoriaServicios() {
 		catservicios = catsrvdao.listadoCatServicios();
 	}
-	
 	
 	public String eliminar(int codigo){
     	catsrvdao.borrar(codigo);

@@ -7,10 +7,12 @@
 	<ui:composition template="AdminPage.xhtml">
 		<ui:define name="contenido_admin">
 		<h:form>
-			<br/>
+			<div  style="text-align: center;">
+                <h3 class="title">Servicios ingresados</h3>
+            </div>
 			<div class="col-sm-6 col-lg-3">
             	<div class="input-group">
-                	<h:inputText value="#{servicioControlador.id}" type="text" class="form-control"/>
+                	<h:inputText value="#{servicioControlador.servicio.codigo}" type="text" class="form-control"/>
                     <span class="input-group-addon">
                     	<i class="now-ui-icons ui-1_zoom-bold"></i>
               		</span>
@@ -19,7 +21,7 @@
 						<f:ajax render="listaServicios"/>
 			    </h:commandButton>
       		</div>
-			<br/>
+			
 			<h:outputText value="No existen Registros" rendered="#{empty servicioControlador.servicios}" />
 			<h:dataTable id="listaServicios" value="#{servicioControlador.servicios}" var="servicio" rendered="#{not empty servicioControlador.servicios}" border-collapse="collapse" width="100%">
 				<h:column>
@@ -28,15 +30,15 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">Nombre</f:facet>
-					#{servicio.nombre}
+					#{servicio.nombreServicio}
 				</h:column>
 				<h:column>
 					<f:facet name="header">Descripcion</f:facet>
 					#{servicio.descripcion}
 				</h:column>
 				<h:column>
-					<f:facet name="header">Precio</f:facet>
-					#{servicio.price}
+					<f:facet name="header">Valor</f:facet>
+					#{servicio.valorServicio}
 				</h:column>
 				<h:column>
 					<f:facet name="header">Acciones</f:facet>
