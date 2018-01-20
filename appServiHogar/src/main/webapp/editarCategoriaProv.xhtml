@@ -7,21 +7,21 @@
 	<ui:composition template="AdminPage.xhtml">
 		<ui:define name="contenido_admin">
 		<f:metadata>
-			<f:viewParam name="id" value="#{categoriaProvControlador.id}"/>
+			<f:viewParam name="id" value="#{categoriaControlador.id}"/>
 		</f:metadata>
 		<h:form >
-			<h:inputText value="#{categoriaProvControlador.id}" />
+			<h:inputText value="#{categoriaControlador.id}" />
 			<h:messages globalOnly="True"/>
 			<h:panelGrid columns="3" style="margin: 0 auto;">
 	                           	<h:outputLabel value="Codigo:" />
-	                            <h:inputText type="text" value="#{categoriaProvControlador.catproveedor.codigo}" class="form-control" id="codigo"/>
+	                            <h:inputText type="text" value="#{categoriaControlador.categoria.codigo}" class="form-control" id="codigo"/>
 	                            <h:message for="codigo"/>
 	                        	<h:outputLabel value="Nombre:" />
-	                            <h:inputText type="text" value="#{categoriaProvControlador.catproveedor.nombre}" class="form-control" id="nombre"/>
+	                            <h:inputText type="text" value="#{categoriaControlador.categoria.descripcion}" class="form-control" id="nombre"/>
 	                            <h:message for="nombre"/>	
 	              
 	                            <br/>
-	                            <h:commandButton class="btn btn-primary btn-round" action="#{categoriaProvControlador.editar()}" value="Editar"/>
+	                            <h:commandButton class="btn btn-primary btn-round" action="#{categoriaControlador.editar()}" value="Editar"/>
 			</h:panelGrid>
 		</h:form>
 	</ui:define>

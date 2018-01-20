@@ -60,6 +60,7 @@ public class CategoriaControlador {
 
 	public void setId(String id) {
 		this.id = id;
+		loadDatosEditar(Integer.parseInt(id));
 	}
 
 	public FacesContext getFacesContext() {
@@ -93,8 +94,10 @@ public class CategoriaControlador {
 		this.listcategorias = listcategorias;
 	}
 
-		//funciones
-		public String editar(){
+		
+	//funciones
+	
+	public String editar(){
 			try{
 				if(this.id!=null){
 					System.out.println(categoria);
