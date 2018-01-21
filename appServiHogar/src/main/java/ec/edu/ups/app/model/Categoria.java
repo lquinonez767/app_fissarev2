@@ -21,7 +21,6 @@ public class Categoria {
 	
 	
 	@Id
-	@NotNull
 	@Column(name="cat_codigo")
 	private int codigo;
 	
