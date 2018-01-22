@@ -118,13 +118,13 @@ public class UsuarioControlador {
 				return "index.xhtml";
 			}
 			
-			public String loadDatosEditar(String username){
-				usuario = udao.leer(username);
+			public String loadDatosEditar(int id){
+				usuario = udao.leer(id);
 				return "editarUsuario";
 			}
 			
-			public String loadDatosEliminar(String username){
-				udao.borrar(username);
+			public String loadDatosEliminar(int id){
+				udao.borrar(id);
 				init();
 				return "listarUsuario";
 			}
@@ -134,8 +134,8 @@ public class UsuarioControlador {
 				usuarios = udao.listadoUsuarios();
 			}
 			
-			public String eliminar(String username){
-		    	udao.borrar(username);
+			public String eliminar(int id){
+		    	udao.borrar(id);
 		    	init();
 		    	return null;
 		    }
