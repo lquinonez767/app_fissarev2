@@ -3,15 +3,19 @@ package ec.edu.ups.app.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="tbl_usuario")
-public class Usuario {
-	@Id
-	  @GeneratedValue
+@NamedQuery(name="Usuario.findAll", query="SELECT p FROM Usuario p")
+public class Usuario{
+	  @Id
+	  @GeneratedValue(strategy = GenerationType.AUTO)
+	  @Column(name = "id", updatable = false, nullable = false)
 	  private int id;
 	  
 	  @NotNull
