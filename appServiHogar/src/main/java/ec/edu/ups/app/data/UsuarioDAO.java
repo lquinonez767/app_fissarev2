@@ -39,7 +39,7 @@ public class UsuarioDAO {
 	}
 	
 	public List<Usuario> listadoUsuarios(){
-		String jpql = "SELECT p FROM Proveedor p";
+		String jpql = "SELECT p FROM Usuario p";
 		Query query = em.createQuery(jpql, Usuario.class);
 		List<Usuario> listado = query.getResultList();
 		return listado;
@@ -56,6 +56,7 @@ public class UsuarioDAO {
 	
 	public void guardar(Usuario usuario){
 		Usuario p = leer(usuario.getId());
+		System.out.println("holaaaaaa5");
 		if (p==null)
 			insertar(usuario);
 		else
@@ -67,7 +68,7 @@ public class UsuarioDAO {
 		System.out.println("holaaaaaa2");
 		System.out.println(p);
 		if (p==null){
-			System.out.println("holaaaaaa3");
+			System.out.println("holaaaaaa4");
 			System.out.println(usuario);
 			insertar(usuario);
 			return true;

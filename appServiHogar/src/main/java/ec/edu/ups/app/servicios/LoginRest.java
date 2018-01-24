@@ -67,7 +67,7 @@ public class LoginRest {
     		System.out.println(usuario);
     		usuario.setRolUsuario("user");
     		System.out.println(usuario);
-    		usuario.setId(3);
+    		//usuario.setId(3);
     		usuario.setPassword(password);
     		usuario.setSesion("activo");
     		usuario.setUsername(username);
