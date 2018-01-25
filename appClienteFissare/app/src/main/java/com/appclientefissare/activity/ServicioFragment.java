@@ -21,10 +21,10 @@ public class ServicioFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        view.findViewById(R.id.button).setOnClickListener(new View.OnClickListener(){
+        view.findViewById(R.id.button_servicio).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Toast.makeText(getActivity(), "Estas dentro de Servicio", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Estas dentro de Servicios", Toast.LENGTH_SHORT).show();
             }
         });
 
