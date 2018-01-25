@@ -17,7 +17,7 @@ import ec.edu.ups.app.model.Usuario;
 @ManagedBean
 @ViewScoped	
 public class UsuarioControlador {
-	@Inject
+	
 	private Usuario usuario;
 	private List<Usuario> usuarios;
 	private String id;
@@ -59,6 +59,7 @@ public class UsuarioControlador {
 
 	public void setId(String id) {
 		this.id = id;
+		loadDatosEditar(Integer.parseInt(id));
 	}
 
 	public UsuarioDAO getUdao() {
@@ -80,7 +81,7 @@ public class UsuarioControlador {
 					return "listarUsuario";
 				}else{
 					udao.insertar(usuario);
-					return "RegistroProveedores";
+					return "listarUsuario";
 				}
 			}catch(Exception e){
 				String errorMessage = getRootErrorMessage(e);
@@ -94,13 +95,13 @@ public class UsuarioControlador {
 				try{ 
 					System.out.println("Holaaaaaaaaa");
 					System.out.println(usuario);
-					if(usuario.getUsername().equals("")){
-						return "listarUsuario";
-					}else{
-						udao.guardar(usuario);
-						loadUsuarios();
-						return "listarUsuario";
-					}
+					//if(usuario.getUsername().equals("")){
+					//	return "listarUsuario";
+					//}else{
+					udao.guardar(usuario);
+					loadUsuarios();
+					return "listarUsuario";
+					//}
 					
 				}catch(Exception e){
 					String errorMessage = getRootErrorMessage(e);
@@ -115,16 +116,16 @@ public class UsuarioControlador {
 				System.out.println("holaaaaaa1-1");
 				usuarios = udao.getUsuario(username, password);
 				System.out.println(usuarios);
-				return "index.xhtml";
+				return "listarUsuario";
 			}
 			
-			public String loadDatosEditar(String username){
-				usuario = udao.leer(username);
+			public String loadDatosEditar(int id){
+				usuario = udao.leer(id);
 				return "editarUsuario";
 			}
 			
-			public String loadDatosEliminar(String username){
-				udao.borrar(username);
+			public String loadDatosEliminar(int id){
+				udao.borrar(id);
 				init();
 				return "listarUsuario";
 			}
@@ -134,10 +135,10 @@ public class UsuarioControlador {
 				usuarios = udao.listadoUsuarios();
 			}
 			
-			public String eliminar(String username){
-		    	udao.borrar(username);
+			public String eliminar(int id){
+		    	udao.borrar(id);
 		    	init();
-		    	return null;
+		    	return "listarUsuario";
 		    }
 
 			

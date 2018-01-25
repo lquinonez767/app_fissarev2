@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="AdminPage.xhtml">
+		<ui:define name="contenido_admin">
+		<h:form >
+			<div style="text-align: center;">
+                        <div  style="text-align: center;">
+                            <h3 class="title">Crear Usuarios del Sistema</h3>
+                        </div>
+                        <div  style="text-align: center;">
+	                     <h:panelGrid columns="3" style="margin: 0 auto;">
+	                           	<h:outputLabel value="Codigo:" />
+	                            <h:inputText type="text" value="#{usuarioControlador.usuario.id}" class="form-control" id="codigo"/>
+	                            <h:message for="codigo"/>
+	                        	<h:outputLabel value="Username:" />
+	                            <h:inputText type="text" value="#{usuarioControlador.usuario.username}" class="form-control" id="username"/>
+	                            <h:message for="username"/>	
+	                            <h:outputLabel value="Password:" />
+	                            <h:inputText type="text" value="#{usuarioControlador.usuario.password}" class="form-control" id="password"/>
+	                            <h:message for="password"/>	
+	                            <h:outputLabel value="rol:" />
+	                            <h:inputText type="text" value="#{usuarioControlador.usuario.rolUsuario}" class="form-control" id="rol"/>
+	                            <h:message for="rol"/>	
+	                            <h:outputLabel value="Sesion:" />
+	                            <h:inputText type="text" value="#{usuarioControlador.usuario.sesion}" class="form-control" id="sesion"/>
+	                            <h:message for="sesion"/>
+	                            
+	                            
+	                            <h:commandButton class="btn btn-primary btn-round" action="#{usuarioControlador.guardar()}" value="Ingresar"/>
+	                            
+	                    </h:panelGrid>      
+                        </div>      
+                    </div>
+                    
+            </h:form>        
+		</ui:define>
+	</ui:composition>
+</html>

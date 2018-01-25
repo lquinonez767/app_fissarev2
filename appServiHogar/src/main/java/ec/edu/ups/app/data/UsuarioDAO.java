@@ -16,6 +16,8 @@ public class UsuarioDAO {
 	private EntityManager em;
 	
 	public void insertar (Usuario usuario){
+		System.out.println("holaaaaaa3");
+		System.out.println(usuario);
 		em.persist(usuario);
 	}
 	
@@ -23,17 +25,21 @@ public class UsuarioDAO {
 		em.merge(usuario);
 	}
 
-	public void borrar (String nombre){
-		em.remove(leer(nombre));
+	public void borrar (int id){
+		em.remove(leer(id));
 	}
 	
-	public Usuario leer (String nombre){
-		Usuario p = em.find(Usuario.class, nombre);
+	public Usuario leer (int id){
+		System.out.println("holaaaaaa2.1");
+		System.out.println(id);
+		Usuario p = em.find(Usuario.class, id);
+		System.out.println("holaaaaaa2.2");
+		System.out.println(p);
 		return p;
 	}
 	
 	public List<Usuario> listadoUsuarios(){
-		String jpql = "SELECT p FROM Proveedor p";
+		String jpql = "SELECT p FROM Usuario p";
 		Query query = em.createQuery(jpql, Usuario.class);
 		List<Usuario> listado = query.getResultList();
 		return listado;
@@ -49,11 +55,25 @@ public class UsuarioDAO {
      }
 	
 	public void guardar(Usuario usuario){
-		Usuario p = leer(usuario.getUsername());
+		Usuario p = leer(usuario.getId());
+		System.out.println("holaaaaaa5");
 		if (p==null)
 			insertar(usuario);
 		else
 			actualizar(usuario);
+	}
+	
+	public boolean guardar_rest(Usuario usuario){
+		Usuario p = leer(usuario.getId());
+		System.out.println("holaaaaaa2");
+		System.out.println(p);
+		if (p==null){
+			System.out.println("holaaaaaa4");
+			System.out.println(usuario);
+			insertar(usuario);
+			return true;
+		}else
+			return false;
 	}
 		 
 }
