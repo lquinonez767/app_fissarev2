@@ -23,58 +23,23 @@
 
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+
+    <Button
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp">
-        <TextView
-            android:text="Email:"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:textSize="20sp" />
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:hint="jperez@dominio.com"
-            android:id="@+id/preregister_email" />
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp">
-        <TextView
-            android:text="Contraseña:"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:textSize="20sp" />
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:hint="minimo 6 caracteres"
-            android:id="@+id/preregister_password" />
-    </LinearLayout>
-
+        android:text="Cliente"
+        android:textSize="25dp"
+        android:id="@+id/preregister_cliente"
+        android:layout_marginTop="70dp"/>
 
 
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Aceptar"
-        android:id="@+id/preregister_button"
+        android:text="Proveedor"
+        android:textSize="25dp"
+        android:id="@+id/preregister_proveedor"
         android:layout_marginTop="30dp"/>
-
-
-
-
 
 </LinearLayout>
