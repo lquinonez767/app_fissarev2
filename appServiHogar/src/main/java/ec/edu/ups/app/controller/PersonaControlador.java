@@ -13,8 +13,9 @@ import javax.inject.Inject;
 
 import ec.edu.ups.app.data.CategoriaPerDAO;
 import ec.edu.ups.app.data.PersonaDAO;
-import ec.edu.ups.app.model.Categoria;
+import ec.edu.ups.app.data.UsuarioDAO;
 import ec.edu.ups.app.model.Persona;
+import ec.edu.ups.app.model.Usuario;
 
 @ManagedBean
 @ViewScoped	
@@ -25,11 +26,17 @@ public class PersonaControlador {
 	private List<SelectItem> listpersonas;
 	private String id;
 	
+	private Usuario usuario;
+	
 	@Inject
 	private FacesContext facesContext;
 	
 	@Inject
 	private PersonaDAO pdao;
+	
+	@Inject
+	private UsuarioDAO udao;
+	
 	
 	@Inject
 	private CategoriaPerDAO catperdao;
@@ -38,6 +45,7 @@ public class PersonaControlador {
 	@PostConstruct
 	public void init(){
 		persona=new Persona();
+		usuario=new Usuario();
 		loadPersonas();
 	}
 
@@ -90,6 +98,25 @@ public class PersonaControlador {
 		this.listpersonas = listpersonas;
 	}
 
+	
+	
+	
+	public UsuarioDAO getUdao() {
+		return udao;
+	}
+
+	public void setUdao(UsuarioDAO udao) {
+		this.udao = udao;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	//funciones
 	public String editar(){
 		try{
@@ -123,6 +150,69 @@ public class PersonaControlador {
 					pdao.guardar(persona);
 					loadPersonas();
 					return "listarProveedor";
+				}
+				
+			}catch(Exception e){
+				String errorMessage = getRootErrorMessage(e);
+	            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
+	            facesContext.addMessage(null, m);
+	            return null; 
+			}
+			
+		}
+		
+		public String guardar_front(int itemCategoria){
+			try{ 
+				System.out.println(itemCategoria);
+				persona.setCategoria(catperdao.leer(itemCategoria));
+				System.out.println(persona);
+				if(persona.getCedula().equals("")){
+					return "registro-incorrecto";
+				}else{
+					persona.setChkCliente(true);
+					persona.setExperiencia(1);
+					persona.setDescripcion("-----");
+					persona.setCertServicios("-----");
+					System.out.println("HolaaaaaaaaaPersona");
+					System.out.println(persona);
+					pdao.guardar(persona);
+					loadPersonas();
+					usuario.setSesion("0");
+					usuario.setPersona(persona);
+					System.out.println("HolaaaaaaaaaUsuario");
+					System.out.println(usuario);
+					udao.guardar(usuario);
+					return "RegistroExitoso";
+				}
+				
+			}catch(Exception e){
+				String errorMessage = getRootErrorMessage(e);
+	            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
+	            facesContext.addMessage(null, m);
+	            return null; 
+			}
+			
+		}
+		
+		public String guardar_front_prov(int itemCategoria){
+			try{ 
+				System.out.println(itemCategoria);
+				persona.setCategoria(catperdao.leer(itemCategoria));
+				System.out.println(persona);
+				if(persona.getCedula().equals("")){
+					return "registro-incorrecto";
+				}else{
+					persona.setChkProveedor(true);
+					System.out.println("HolaaaaaaaaaPersona");
+					System.out.println(persona);
+					pdao.guardar(persona);
+					loadPersonas();
+					usuario.setSesion("0");
+					usuario.setPersona(persona);
+					System.out.println("HolaaaaaaaaaUsuario");
+					System.out.println(usuario);
+					udao.guardar(usuario);
+					return "RegistroExitoso";
 				}
 				
 			}catch(Exception e){

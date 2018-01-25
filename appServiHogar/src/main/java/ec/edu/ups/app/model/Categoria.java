@@ -4,6 +4,8 @@ package ec.edu.ups.app.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -21,7 +23,8 @@ public class Categoria {
 	
 	
 	@Id
-	@Column(name="cat_codigo")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "cat_codigo", updatable = false, nullable = false)
 	private int codigo;
 	
 	@NotBlank
