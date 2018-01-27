@@ -3,21 +3,24 @@ package ec.edu.ups.app.controller;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import ec.edu.ups.app.data.PersonaDAO;
 import ec.edu.ups.app.data.UsuarioDAO;
 import ec.edu.ups.app.model.Persona;
 import ec.edu.ups.app.model.Usuario;
+import ec.edu.ups.app.util.SessionUtils;
 
 
-
+@Named
 @ManagedBean
-@ViewScoped	
+@RequestScoped	
 public class UsuarioControlador {
 	
 	private Usuario usuario;
@@ -25,6 +28,9 @@ public class UsuarioControlador {
 	private String id;
 	
 	private Persona persona;
+	
+	 @Inject // inyectamos la dependencia
+	 private SessionUtils session;
 	
 	@Inject
 	private FacesContext facesContext;
@@ -218,14 +224,23 @@ public class UsuarioControlador {
 			public String login(){
 		        String result="false";   
 		        try{
-		    		List<Usuario> cat = udao.getUsuario(usuario.getUsername(), usuario.getPassword());
-		    		System.out.println("holaaaaaaaa3");
+		        	List<Usuario> cat = udao.getUsuario(usuario.getUsername(), usuario.getPassword());
+		    		System.out.println("holaaaaaaaaUsuarioOK");
+		    		System.out.println(cat);
 		    		System.out.println(cat);
 		    		if (cat.isEmpty()){
 		    			result = "RegistroFallido";
 		    		}else{
-		    			result = "listarPedidoprov";
-		    			//return cat.get(0);
+		    			usuario=cat.get(0);
+		    			if (usuario.getPersona().isChkProveedor()){
+		    				session.add("usuarioLogueado", usuario.getUsername());
+			    			System.out.println("holaaaaaaaaUsuarioOK");
+			    			System.out.println(session);
+			    			result = "listarPedidoprov";
+			    			//return cat.get(0);
+		    			}else{
+		    				result = "RegistroFallido";
+		    			}
 		    		}
 		        }
 		        catch(Exception e){
@@ -239,14 +254,24 @@ public class UsuarioControlador {
 		        String result="false";   
 		        try{
 		    		List<Usuario> cat = udao.getUsuario(usuario.getUsername(), usuario.getPassword());
-		    
-		    		System.out.println("holaaaaaaaa3");
+		    		System.out.println("holaaaaaaaaUsuarioCliOK");
 		    		System.out.println(cat);
+		    		System.out.println("holaaaaaaaatamano");
+		    		System.out.println(cat.size());
+		    		//System.out.println(usuario.getUsername());
 		    		if (cat.isEmpty()){
 		    			result = "RegistroFallido";
 		    		}else{
-		    			result = "listarPedidocli";
-		    			//return cat.get(0);
+		    			usuario=cat.get(0);
+		    			if (usuario.getPersona().isChkCliente()){
+		    				session.add("usuarioLogueado", usuario.getUsername());
+			    			System.out.println("holaaaaaaaaUsuarioOK");
+			    			System.out.println(session);
+			    			result = "listarPedidocli";
+			    			//return cat.get(0);
+		    			}else{
+		    				result = "RegistroFallido";
+		    			}
 		    		}
 		        }
 		        catch(Exception e){

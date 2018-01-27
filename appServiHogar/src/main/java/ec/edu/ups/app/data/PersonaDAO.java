@@ -1,5 +1,6 @@
 package ec.edu.ups.app.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -33,10 +34,20 @@ public class PersonaDAO {
 		return p;
 	}
 	
-	public List<Persona> listadoPersonas(){
-		String jpql = "SELECT p FROM Persona p";
-		Query query = em.createQuery(jpql, Persona.class);
-		List<Persona> listado = query.getResultList();
+	public List<Persona> listadoPersonas(String tipo){
+		System.out.println("holaaaapersonas");
+		List<Persona> listado = new ArrayList<Persona>();
+		if (tipo.equals("c")){
+			String jpql = "SELECT p FROM Persona p WHERE p.chkCliente=TRUE";
+			Query query = em.createQuery(jpql, Persona.class);
+			listado = query.getResultList();
+		}
+		if (tipo.equals("p")){
+			String jpql = "SELECT p FROM Persona p WHERE p.chkProveedor=TRUE";
+			Query query = em.createQuery(jpql, Persona.class);
+			listado = query.getResultList();
+		}
+		
 		return listado;
 	} 
 	
