@@ -25,6 +25,7 @@ public class PersonaControlador {
 	private List<Persona> personas;
 	private List<SelectItem> listpersonas;
 	private String id;
+	private String tipo;
 	
 	private Usuario usuario;
 	
@@ -46,6 +47,7 @@ public class PersonaControlador {
 	public void init(){
 		persona=new Persona();
 		usuario=new Usuario();
+		System.out.println("holaaaaaaproveddorinit");
 		loadPersonas();
 	}
 
@@ -97,9 +99,6 @@ public class PersonaControlador {
 	public void setListpersonas(List<SelectItem> listpersonas) {
 		this.listpersonas = listpersonas;
 	}
-
-	
-	
 	
 	public UsuarioDAO getUdao() {
 		return udao;
@@ -115,6 +114,15 @@ public class PersonaControlador {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+	
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+		loadPersonas();
 	}
 
 	//funciones
@@ -243,7 +251,21 @@ public class PersonaControlador {
 		
 		
 		private void loadPersonas() {
-			personas = pdao.listadoPersonas();
+			System.out.println(tipo);
+			if (tipo==null){
+				System.out.println("holaaaaaanulll");
+				//personas = pdao.listadoPersonas();
+			}else{
+				if (tipo.equals("p")){
+					System.out.println("holaaaaaaproveedoraaaa");
+					personas = pdao.listadoPersonas(tipo);
+				}
+				if (tipo.equals("c")){
+					System.out.println("holaaaaaacliente");
+					personas = pdao.listadoPersonas(tipo);
+				}
+				System.out.println("holaaaaaaclientefin");
+			}
 		}
 		
 		public String eliminar(String cedula){

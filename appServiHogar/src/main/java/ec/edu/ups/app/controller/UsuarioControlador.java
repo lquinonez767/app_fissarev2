@@ -3,21 +3,24 @@ package ec.edu.ups.app.controller;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import ec.edu.ups.app.data.PersonaDAO;
 import ec.edu.ups.app.data.UsuarioDAO;
 import ec.edu.ups.app.model.Persona;
 import ec.edu.ups.app.model.Usuario;
+import ec.edu.ups.app.util.SessionUtils;
 
 
-
+@Named
 @ManagedBean
-@ViewScoped	
+@RequestScoped	
 public class UsuarioControlador {
 	
 	private Usuario usuario;
@@ -25,6 +28,9 @@ public class UsuarioControlador {
 	private String id;
 	
 	private Persona persona;
+	
+	 @Inject // inyectamos la dependencia
+	 private SessionUtils session;
 	
 	@Inject
 	private FacesContext facesContext;
@@ -239,12 +245,16 @@ public class UsuarioControlador {
 		        String result="false";   
 		        try{
 		    		List<Usuario> cat = udao.getUsuario(usuario.getUsername(), usuario.getPassword());
-		    
-		    		System.out.println("holaaaaaaaa3");
+		    		System.out.println("holaaaaaaaaUsuarioOK");
+		    		System.out.println(cat);
+		    		usuario=cat.get(0);
 		    		System.out.println(cat);
 		    		if (cat.isEmpty()){
 		    			result = "RegistroFallido";
 		    		}else{
+		    			session.add("usuarioLogueado", usuario.getUsername());
+		    			System.out.println("holaaaaaaaaUsuarioOK");
+		    			System.out.println(session);
 		    			result = "listarPedidocli";
 		    			//return cat.get(0);
 		    		}

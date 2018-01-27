@@ -6,6 +6,9 @@
 
 	<ui:composition template="AdminPage.xhtml">
 		<ui:define name="contenido_admin">
+		<f:metadata>
+			<f:viewParam name="tipo" value="#{personaControlador.tipo}"/>
+		</f:metadata>
 		<h:form>
 			<br/>
 			<div class="col-sm-6 col-lg-3">

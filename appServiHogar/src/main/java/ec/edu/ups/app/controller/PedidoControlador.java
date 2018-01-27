@@ -12,10 +12,15 @@ import javax.inject.Inject;
 import ec.edu.ups.app.data.PedidoDAO;
 import ec.edu.ups.app.data.PersonaDAO;
 import ec.edu.ups.app.model.Pedido;
+import ec.edu.ups.app.util.SessionUtils;
 
 @ManagedBean
 @ViewScoped	
 public class PedidoControlador {
+	
+	 @Inject // inyectamos la dependencia
+	 private SessionUtils session;
+	 private String username; 
 	
 	private Pedido pedido;
 	
@@ -35,6 +40,9 @@ public class PedidoControlador {
 	@PostConstruct
 	public void init() {
 		pedido = new Pedido();
+		System.out.println("usuarioLogueado");
+		username=session.get("usuarioLogueado");
+		System.out.println(username);
 		loadPedidos();
 	}
 
@@ -82,7 +90,17 @@ public class PedidoControlador {
 		this.pdao = pdao;
 	}
 	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	
 	//Funciones
+	
 	
 	public String editar(){
 		try{
@@ -150,6 +168,8 @@ public class PedidoControlador {
 	
 	
 	private void loadPedidos() {
+		System.out.println("holaaaaaapedidos");
+		System.out.println(session);
 		pedidos = pedidodao.listadoPedidos();
 	}
 	

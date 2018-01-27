@@ -24,6 +24,7 @@
             	<h3 class="title">Listado de Pedidos por Estados</h3>
                 <h5 class="description">Miles de clientes y proveedores sabrán de ti y de tu experiencia. Registrate ya.</h5>
             </div>
+            <h:message for="usuario"/>	
 			<h:outputText value="No existen Registros" rendered="#{empty pedidoControlador.pedido}" />
 			<h:dataTable id="listaPedidos" value="#{pedidoControlador.pedidos}" var="pedido" rendered="#{not empty  pedidoControlador.pedidos}" border-collapse="collapse" width="100%">
 				<h:column>
