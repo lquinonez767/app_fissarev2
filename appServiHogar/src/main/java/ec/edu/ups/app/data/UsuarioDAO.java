@@ -16,7 +16,7 @@ public class UsuarioDAO {
 	private EntityManager em;
 	
 	public void insertar (Usuario usuario){
-		System.out.println("holaaaaaa3");
+		System.out.println("holaaaaaa3inserusuario");
 		System.out.println(usuario);
 		em.persist(usuario);
 	}
@@ -46,7 +46,7 @@ public class UsuarioDAO {
 	} 
 	
 	public List<Usuario> getUsuario(String Username, String Password){
-		System.out.println("holaaaaaa2");
+		System.out.println("holaaaaaa2getusuario");
         String slq= "SELECT u FROM Usuario u WHERE u.username= :username and u.password= :password";
 		Query q = em.createQuery(slq);
 	    q.setParameter("username", Username);

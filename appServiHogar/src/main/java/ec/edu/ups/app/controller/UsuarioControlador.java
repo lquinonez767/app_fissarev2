@@ -224,14 +224,23 @@ public class UsuarioControlador {
 			public String login(){
 		        String result="false";   
 		        try{
-		    		List<Usuario> cat = udao.getUsuario(usuario.getUsername(), usuario.getPassword());
-		    		System.out.println("holaaaaaaaa3");
+		        	List<Usuario> cat = udao.getUsuario(usuario.getUsername(), usuario.getPassword());
+		    		System.out.println("holaaaaaaaaUsuarioOK");
+		    		System.out.println(cat);
 		    		System.out.println(cat);
 		    		if (cat.isEmpty()){
 		    			result = "RegistroFallido";
 		    		}else{
-		    			result = "listarPedidoprov";
-		    			//return cat.get(0);
+		    			usuario=cat.get(0);
+		    			if (usuario.getPersona().isChkProveedor()){
+		    				session.add("usuarioLogueado", usuario.getUsername());
+			    			System.out.println("holaaaaaaaaUsuarioOK");
+			    			System.out.println(session);
+			    			result = "listarPedidoprov";
+			    			//return cat.get(0);
+		    			}else{
+		    				result = "RegistroFallido";
+		    			}
 		    		}
 		        }
 		        catch(Exception e){
@@ -245,18 +254,24 @@ public class UsuarioControlador {
 		        String result="false";   
 		        try{
 		    		List<Usuario> cat = udao.getUsuario(usuario.getUsername(), usuario.getPassword());
-		    		System.out.println("holaaaaaaaaUsuarioOK");
+		    		System.out.println("holaaaaaaaaUsuarioCliOK");
 		    		System.out.println(cat);
-		    		usuario=cat.get(0);
-		    		System.out.println(cat);
+		    		System.out.println("holaaaaaaaatamano");
+		    		System.out.println(cat.size());
+		    		//System.out.println(usuario.getUsername());
 		    		if (cat.isEmpty()){
 		    			result = "RegistroFallido";
 		    		}else{
-		    			session.add("usuarioLogueado", usuario.getUsername());
-		    			System.out.println("holaaaaaaaaUsuarioOK");
-		    			System.out.println(session);
-		    			result = "listarPedidocli";
-		    			//return cat.get(0);
+		    			usuario=cat.get(0);
+		    			if (usuario.getPersona().isChkCliente()){
+		    				session.add("usuarioLogueado", usuario.getUsername());
+			    			System.out.println("holaaaaaaaaUsuarioOK");
+			    			System.out.println(session);
+			    			result = "listarPedidocli";
+			    			//return cat.get(0);
+		    			}else{
+		    				result = "RegistroFallido";
+		    			}
 		    		}
 		        }
 		        catch(Exception e){
