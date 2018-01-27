@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,7 +26,8 @@ public class Servicio implements Serializable{
 	
 	@Id
 	@NotNull(message="Campo requerido")
-	@Column(name="ser_codigo")
+	@Column(name = "ser_codigo", updatable = false, nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int codigo;
 	
 	@NotBlank(message="Campo requerido")

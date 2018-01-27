@@ -9,7 +9,9 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import ec.edu.ups.app.data.PersonaDAO;
 import ec.edu.ups.app.data.UsuarioDAO;
+import ec.edu.ups.app.model.Persona;
 import ec.edu.ups.app.model.Usuario;
 
 
@@ -22,11 +24,17 @@ public class UsuarioControlador {
 	private List<Usuario> usuarios;
 	private String id;
 	
+	private Persona persona;
+	
 	@Inject
 	private FacesContext facesContext;
 	
 	@Inject
 	private UsuarioDAO udao;
+	
+	@Inject
+	private PersonaDAO pdao;
+	
 	
 	@PostConstruct
 	public void init(){
@@ -70,6 +78,25 @@ public class UsuarioControlador {
 		this.udao = udao;
 	}
 	
+	public Persona getPersona() {
+		return persona;
+	}
+
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+
+
+	public PersonaDAO getPdao() {
+		return pdao;
+	}
+
+
+	public void setPdao(PersonaDAO pdao) {
+		this.pdao = pdao;
+	}
+
 	//funciones
 	
 		public String editar(){
@@ -111,6 +138,32 @@ public class UsuarioControlador {
 				}
 				
 			}
+			
+			public String guardar_front_cliente(){
+				try{ 
+					System.out.println("Holaaaaaaaaa");
+					System.out.println(usuario);
+					System.out.println(persona);
+					//if(usuario.getUsername().equals("")){
+					//	return "listarUsuario";
+					//}else{
+					usuario.setSesion("0");
+					usuario.setPersona(persona);
+					udao.guardar(usuario);
+					loadUsuarios();
+					return "RegistroExitoso";
+					//}
+					
+				}catch(Exception e){
+					String errorMessage = getRootErrorMessage(e);
+		            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
+		            facesContext.addMessage(null, m);
+		            return "RegistroFallido"; 
+				}
+				
+			}
+			
+			
 			
 			public String loadDatosBuscar(String username, String password){
 				System.out.println("holaaaaaa1-1");
@@ -159,6 +212,48 @@ public class UsuarioControlador {
 		        }
 		        // This is the root cause message
 		        return errorMessage;
+		    }
+			
+			
+			public String login(){
+		        String result="false";   
+		        try{
+		    		List<Usuario> cat = udao.getUsuario(usuario.getUsername(), usuario.getPassword());
+		    		System.out.println("holaaaaaaaa3");
+		    		System.out.println(cat);
+		    		if (cat.isEmpty()){
+		    			result = "RegistroFallido";
+		    		}else{
+		    			result = "listarPedidoprov";
+		    			//return cat.get(0);
+		    		}
+		        }
+		        catch(Exception e){
+		            e.printStackTrace();
+		        }
+		        
+		        return result;
+		    }
+			
+			public String loginCliente(){
+		        String result="false";   
+		        try{
+		    		List<Usuario> cat = udao.getUsuario(usuario.getUsername(), usuario.getPassword());
+		    
+		    		System.out.println("holaaaaaaaa3");
+		    		System.out.println(cat);
+		    		if (cat.isEmpty()){
+		    			result = "RegistroFallido";
+		    		}else{
+		    			result = "listarPedidocli";
+		    			//return cat.get(0);
+		    		}
+		        }
+		        catch(Exception e){
+		            e.printStackTrace();
+		        }
+		        
+		        return result;
 		    }
 
 

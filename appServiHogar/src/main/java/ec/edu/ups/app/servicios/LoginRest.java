@@ -14,7 +14,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
+import ec.edu.ups.app.data.CategoriaPerDAO;
+import ec.edu.ups.app.data.PersonaDAO;
 import ec.edu.ups.app.data.UsuarioDAO;
+import ec.edu.ups.app.model.Persona;
 import ec.edu.ups.app.model.Usuario;
 
 @Path("/web")
@@ -24,6 +27,15 @@ public class LoginRest {
 	
 	@Inject
 	private Usuario usuario;
+	
+	@Inject
+	private PersonaDAO pdao;	
+	
+	@Inject
+	private Persona persona;
+	
+	@Inject
+	private CategoriaPerDAO catperdao;
 	
 	@POST
     @Path("/login")
@@ -57,23 +69,41 @@ public class LoginRest {
     @Path("/registro")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_HTML)
-    public String registro(@FormParam("email") String username, @FormParam("password") String password){
+    public String registro(@FormParam("cedula") String cedula, 
+    		@FormParam("nombres") String nombres,
+    		@FormParam("direccion") String direccion,
+    		@FormParam("telfijo") String telefono,
+    		@FormParam("telmovil") String celular,
+    		@FormParam("email") String username, 
+    		@FormParam("password") String password){
         String result="false";   
         try{
-            usuario = new Usuario();
-        	System.out.println("holaaaaaaaa1");
-    		System.out.println(username);
-    		System.out.println(password);
-    		System.out.println(usuario);
+        	persona = new Persona();
+        	persona.setCedula(cedula);
+    		persona.setNombres(nombres);
+    		persona.setDireccion(direccion);
+    		persona.setEmail(username);
+    		persona.setTelefono(telefono);
+    		persona.setCelular(celular);
+    		persona.setCategoria(catperdao.leer(1));
+    		persona.setChkCliente(true);
+			persona.setExperiencia(1);
+			persona.setDescripcion("-----");
+			persona.setCertServicios("-----");
+			System.out.println("HolaaaaaaaaaPersonaRest");
+			System.out.println(persona);
+			pdao.guardar(persona);
+			
+    		usuario = new Usuario();
+    		usuario.setSesion("0");
+			usuario.setPersona(persona);
     		usuario.setRolUsuario("user");
-    		System.out.println(usuario);
-    		//usuario.setId(3);
     		usuario.setPassword(password);
-    		usuario.setSesion("activo");
     		usuario.setUsername(username);
+    		System.out.println("holaaaaaaaaUsuarioRest");
     		System.out.println(usuario);
     		boolean resp = dao.guardar_rest(usuario);
-    		System.out.println("holaaaaaaaa3");
+    		
     		if (resp==false){
     			result = "false";
     		}else{
@@ -82,8 +112,9 @@ public class LoginRest {
     		}
         }
         catch(Exception e){
+        	result = "false";
             e.printStackTrace();
-        }
+       }
         
         return result;
     }
