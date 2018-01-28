@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="AdminPage.xhtml">
+		<ui:define name="contenido_admin">
+		<h:form >
+			<div style="text-align: center;">
+                        <div  style="text-align: center;">
+                            <h3 class="title">Crear Servicios</h3>
+                        </div>
+                        <div  style="text-align: center;">
+	                     <h:panelGrid columns="3" style="margin: 0 auto;">
+	                           	<h:outputLabel value="Codigo:" />
+	                            <h:inputText type="text" value="#{servicioControlador.servicio.codigo}" class="form-control" id="codigo"/>
+	                            <h:message for="codigo"/>
+	                        	<h:outputLabel value="Nombre:" />
+	                            <h:inputText type="text" value="#{servicioControlador.servicio.nombreServicio}" class="form-control" id="nombre"/>
+	                            <h:message for="nombre"/>	
+	                            <h:outputLabel value="Descripcion:" />
+	                            <h:inputText type="text" value="#{servicioControlador.servicio.descripcion}" class="form-control" id="descripcion"/>
+	                            <h:message for="descripcion"/>	
+	                            <h:outputLabel value="Precio:" />
+	                            <h:inputText type="text" value="#{servicioControlador.servicio.valorServicio}" class="form-control" id="valor"/>
+	                            <h:message for="valor"/>
+	                            
+	                            <h:outputLabel value="Categoria Servicio:" />
+	                            
+	                            <h:selectOneMenu id="categoriaservicio" value="#{categoriaSrvControlador.catservicio.codigo}">
+	                            	<f:selectItem itemLabel="-- Seleccione --" itemValue=""/>
+	                            	<f:selectItems value="#{categoriaSrvControlador.listacategoriaservicios}" />
+	                            </h:selectOneMenu>	
+	                            <br />
+	                            <h:commandButton class="btn btn-primary btn-round" action="#{servicioControlador.guardar(categoriaSrvControlador.catservicio.codigo)}" value="Ingresar"/>
+	                            
+	                    </h:panelGrid>      
+                        </div>      
+                    </div>
+                     	
+            </h:form>        
+		</ui:define>
+	</ui:composition>
+</html>

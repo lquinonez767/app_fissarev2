@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="plantilla.xhtml">
+		<ui:define name="tituloPrincipal">Fissare</ui:define>
+		<ui:define name="tituloSecundario">Hace tu vida más fácil ! </ui:define>
+		<ui:define name="contenido">
+		<h:form >
+			<div style="text-align: center;">
+                        <div  style="text-align: center;">
+                            <h3 class="title">Registro Proveedores</h3>
+                            <h5 class="description">Miles de clientes sabrán de ti y de tu experiencia. Registrate ya.</h5>
+                        </div>
+                        <div class="alert alert-success" role="alert">
+                    <div class="container">
+                        <div class="alert-icon">
+                            <i class="now-ui-icons ui-2_like"></i>
+                        </div>
+                        <strong>Correcto</strong> Sus datos fueron registrados correctamente.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">
+                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                        <div  style="text-align: center;">
+	                     <h:panelGrid columns="2" style="margin: 0 auto;">
+	                           	<h:outputLabel value="Cedula:" />
+	                            <h:outputLabel value="#{personaControlador.persona.cedula}" id="cedula"/>
+	                        	<h:outputLabel value="Nombres:" />
+	                            <h:outputLabel value="#{personaControlador.persona.nombres}" id="nombres"/>
+	                            <h:outputLabel value="Direccion:" />
+	                            <h:outputLabel value="#{personaControlador.persona.direccion}" id="direccion"/>
+	                            <h:outputLabel value="Telefono:" />
+	                            <h:outputLabel value="#{personaControlador.persona.telefono}" id="telefono"/>
+	                            <h:outputLabel value="Celular:" />
+	                            <h:outputLabel value="#{personaControlador.persona.celular}" id="celular"/>
+	                            <h:outputLabel value="Email:" />
+	                            <h:outputLabel value="#{personaControlador.persona.email}" id="email"/>
+	                            <h:outputLabel value="Experiencia:" />
+	                            <h:outputLabel value="#{personaControlador.persona.experiencia}" id="experiencia"/>
+	                            <h:outputLabel value="Info Adicional:" />
+	                            <h:outputLabel value="#{personaControlador.persona.descripcion}" id="descripcion"/>
+	                            <br/>
+	                            <h:commandButton class="btn btn-primary btn-round" action="index" value="Inicio"/>
+	                            
+	                    </h:panelGrid>      
+                        </div>      
+                    </div>
+                    
+            </h:form>        
+		</ui:define>
+	</ui:composition>
+</html>

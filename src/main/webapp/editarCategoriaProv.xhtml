@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="AdminPage.xhtml">
+		<ui:define name="contenido_admin">
+		<f:metadata>
+			<f:viewParam name="id" value="#{categoriaControlador.id}"/>
+		</f:metadata>
+		<h:form >
+			<h:inputText value="#{categoriaControlador.id}" />
+			<h:messages globalOnly="True"/>
+			<h:panelGrid columns="3" style="margin: 0 auto;">
+	                           	<h:outputLabel value="Codigo:" />
+	                            <h:inputText type="text" value="#{categoriaControlador.categoria.codigo}" class="form-control" id="codigo"/>
+	                            <h:message for="codigo"/>
+	                        	<h:outputLabel value="Nombre:" />
+	                            <h:inputText type="text" value="#{categoriaControlador.categoria.descripcion}" class="form-control" id="nombre"/>
+	                            <h:message for="nombre"/>	
+	              
+	                            <br/>
+	                            <h:commandButton class="btn btn-primary btn-round" action="#{categoriaControlador.editar()}" value="Editar"/>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+	</ui:composition>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="AdminPage.xhtml">
+		<ui:define name="contenido_admin">
+		<h:form>
+			<br/>
+			<div class="col-sm-6 col-lg-3">
+            	<div class="input-group">
+                	<h:inputText value="#{usuarioControlador.usuario.id}" type="text" class="form-control"/>
+                    <span class="input-group-addon">
+                    	<i class="now-ui-icons ui-1_zoom-bold"></i>
+              		</span>
+           		</div>
+           		<h:commandButton action="#{usuarioControlador.loadDatosBuscar()}" value="Buscar" class="btn btn-primary btn-round">
+						<f:ajax render="listaUsuario"/>
+			    </h:commandButton>
+      		</div>
+			<br/>
+			<h:outputText value="No existen Registros" rendered="#{empty usuarioControlador.usuario}" />
+			<h:dataTable id="listaUsuario" value="#{usuarioControlador.usuarios}" var="usuario" rendered="#{not empty usuarioControlador.usuarios}" border-collapse="collapse" width="100%">
+				<h:column>
+					<f:facet name="header">Codigo</f:facet>
+					#{usuario.id}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Nombre</f:facet>
+					#{usuario.username}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Acciones</f:facet>
+					<a href="editarUsuario.xhtml?id=#{usuario.id}">Editar</a>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Acciones</f:facet>
+					<h:commandButton action="#{usuarioControlador.loadDatosEliminar(usuario.id)}" value="Borrar" class="btn btn-primary btn-round"/>
+				</h:column>
+			</h:dataTable>
+
+		</h:form></ui:define>
+	</ui:composition>
+</html>

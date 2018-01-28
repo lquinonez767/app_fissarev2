@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="plantilla.xhtml">
+		<ui:define name="tituloPrincipal">Fissare</ui:define>
+		<ui:define name="tituloSecundario">Registro de Usuario</ui:define>
+		<ui:define name="botones">
+		  <h:form >
+			<div class="row justify-content-md-center">           
+            	<div class="text-center col-md-12 col-lg-8">
+                	<a href="RegistroUsuarioProv.xhtml" class="btn btn-primary btn-lg btn-round" role="button">
+                    	Proveedor
+                    </a>
+                    <a href="RegistroUsuarioCli.xhtml" class="btn btn-primary btn-lg btn-simple btn-round" role="button">
+                        Cliente
+                    </a>
+                </div>
+                
+              </div>
+           </h:form>        
+		</ui:define>     
+	</ui:composition>
+</html>

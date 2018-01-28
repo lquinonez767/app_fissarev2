@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="AdminPage.xhtml">
+		<ui:define name="contenido_admin">
+		<f:metadata>
+			<f:viewParam name="tipo" value="#{personaControlador.tipo}"/>
+		</f:metadata>
+		<h:form>
+			<br/>
+			<div class="col-sm-6 col-lg-3">
+            	<div class="input-group">
+                	<h:inputText value="#{personaControlador.id}" type="text" class="form-control"/>
+                    <span class="input-group-addon">
+                    	<i class="now-ui-icons ui-1_zoom-bold"></i>
+              		</span>
+           		</div>
+           		<h:commandButton action="#{personaControlador.loadDatosBuscar(persona.cedula)}" value="Buscar" class="btn btn-primary btn-round">
+						<f:ajax render="listaPersonas"/>
+			    </h:commandButton>
+      		</div>
+			<br/>
+			<div  style="text-align: center;">
+            	<h3 class="title">Listado de Personas</h3>
+                <h5 class="description">Miles de clientes y proveedores sabrán de ti y de tu experiencia. Registrate ya.</h5>
+            </div>
+			<h:outputText value="No existen Registros" rendered="#{empty personaControlador.persona}" />
+			<h:dataTable id="listaPersonas" value="#{personaControlador.personas}" var="persona" rendered="#{not empty  personaControlador.personas}" border-collapse="collapse" width="100%">
+				<h:column>
+					<f:facet name="header">Cedula</f:facet>
+					#{persona.cedula}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Nombres</f:facet>
+					#{persona.nombres}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Direccion</f:facet>
+					#{persona.direccion}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Telefono</f:facet>
+					#{persona.telefono}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Celular</f:facet>
+					#{persona.celular}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Email</f:facet>
+					#{persona.email}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Experiencia</f:facet>
+					#{persona.experiencia}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Info. Adicional</f:facet>
+					#{persona.descripcion}
+				</h:column>
+				<h:column value="#{personaControlador.persona.categoria}" var="categ">
+					<f:facet name="header">Categoria</f:facet>
+					#{categ.descripcion}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Acciones</f:facet>
+					<a href="editarProveedor.xhtml?id=#{persona.cedula}">Editar</a>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Acciones</f:facet>
+					<h:commandButton action="#{personaControlador.loadDatosEliminar(persona.cedula)}" value="Borrar" class="btn btn-primary btn-round"/>
+				</h:column>
+			</h:dataTable>
+
+		</h:form></ui:define>
+	</ui:composition>
+</html>
