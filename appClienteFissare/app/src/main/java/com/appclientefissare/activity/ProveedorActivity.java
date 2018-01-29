@@ -1,9 +1,6 @@
 package com.appclientefissare.activity;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,19 +11,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.appclientefissare.R;
-import com.appclientefissare.activity.fragments.CategoriaservicioFragment;
 
-public class ClientActivity extends AppCompatActivity
+public class ProveedorActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_client);
+        setContentView(R.layout.activity_proveedor);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_proveedor);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_cliente);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_proveedor);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -38,7 +34,7 @@ public class ClientActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_cliente);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_proveedor);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -72,47 +68,39 @@ public class ClientActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
-        Fragment fragmentClient = null;
-
         int id = item.getItemId();
 
-        if (id == R.id.nav_categoria_servicio_cli) {
+        if (id == R.id.nav_servicio_prov){
+            //here eeeeee
+        } else if(id == R.id.nav_servicio_prov){
 
-            //fragmentClient = new CategoryServiceFragment();
-            fragmentClient = new CategoriaservicioFragment();
-            getSupportActionBar().setTitle("Categoria Servicio");
+        } else if(id == R.id.nav_servicio_prov){
 
-        } else if (id == R.id.nav_servicio_cli) {
+        } else if(id == R.id.nav_servicio_prov){
 
-            //fragmentClient = new CategoryServiceFragment();
-            getSupportActionBar().setTitle("Servicio");
-
-        } else if (id == R.id.nav_nuevo_pedido_cli) {
-
-            //fragmentClient = new CategoryServiceFragment();
-            getSupportActionBar().setTitle("Nuevo Pedido");
-
-        } else if (id == R.id.nav_estado_pedido_cli) {
-
-            //fragmentClient = new CategoryServiceFragment();
-            getSupportActionBar().setTitle("Estado Pedido");
+        } else if(id == R.id.nav_servicio_prov){
 
         }
 
-
-        if(fragmentClient != null){
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction ft = fragmentManager.beginTransaction();
-
-            ft.replace(R.id.screen_area_cliente, fragmentClient);
-
-            ft.commit();
-        }
-
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_cliente);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_proveedor);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
