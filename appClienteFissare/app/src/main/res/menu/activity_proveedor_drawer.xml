@@ -5,26 +5,35 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_categoria_servicio"
+            android:icon="@drawable/ic_menu_categoria_proveedor"
+            android:title="Categoria Servicio" />
+        <item
+            android:id="@+id/nav_servicio_prov"
+            android:icon="@drawable/ic_menu_proveedor"
+            android:title="Servicios" />
+        <item
             android:id="@+id/nav_categoria_proveedor"
             android:icon="@drawable/ic_menu_categoria_proveedor"
             android:title="Categoria Proveedor" />
         <item
-            android:id="@+id/nav_proveedor"
+            android:id="@+id/nav_pedidos_proveedor"
             android:icon="@drawable/ic_menu_proveedor"
-            android:title="Proveedor" />
+            android:title="Pedidos" />
     </group>
 
-    <item android:title="Pedidos">
+    <item android:title="Perfil Proveedor">
         <menu>
             <item
-                android:id="@+id/nav_nuevo_pedido"
+                android:id="@+id/nav_perfil_proveedor"
                 android:icon="@drawable/ic_menu_pedido"
-                android:title="Pedidos" />
+                android:title="Perfil Provedor" />
             <item
-                android:id="@+id/nav_estado_pedido"
+                android:id="@+id/nav_editar_datos_proveedor"
                 android:icon="@drawable/ic_menu_estado"
-                android:title="Nuevo Pedido" />
+                android:title="Editar Datos" />
         </menu>
     </item>
+
 
 </menu>
