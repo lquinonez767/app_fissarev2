@@ -34,5 +34,10 @@
 			<attribute name="owner.project.facets" value="jboss.m2"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Wilson/Desktop/Aplicaciones Distribuidas/Correos/notificacionFAC/dsn.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Wilson/Desktop/Aplicaciones Distribuidas/Correos/notificacionFAC/imap.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Wilson/Desktop/Aplicaciones Distribuidas/Correos/notificacionFAC/mailapi.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Wilson/Desktop/Aplicaciones Distribuidas/Correos/notificacionFAC/pop3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Wilson/Desktop/Aplicaciones Distribuidas/Correos/notificacionFAC/smtp.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
