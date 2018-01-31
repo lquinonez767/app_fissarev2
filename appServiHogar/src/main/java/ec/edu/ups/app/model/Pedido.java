@@ -44,7 +44,21 @@ public class Pedido {
 	@JoinColumn(name="cedula")
 	private Persona persona;
 	
+	//bi-directional many-to-one association to Persona
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="codigo")
+	private Servicio servicio;
 	
+	
+	
+	public Servicio getServicio() {
+		return servicio;
+	}
+
+	public void setServicio(Servicio servicio) {
+		this.servicio = servicio;
+	}
+
 	public Persona getPersona() {
 		return persona;
 	}
