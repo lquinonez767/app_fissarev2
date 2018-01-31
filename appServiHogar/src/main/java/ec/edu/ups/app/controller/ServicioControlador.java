@@ -1,5 +1,6 @@
 package ec.edu.ups.app.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,6 +14,7 @@ import javax.inject.Inject;
 import ec.edu.ups.app.data.CategoriaSrvDAO;
 import ec.edu.ups.app.data.ServicioDAO;
 import ec.edu.ups.app.model.CategoriaServicio;
+import ec.edu.ups.app.model.Persona;
 import ec.edu.ups.app.model.Servicio;
 
 @ManagedBean
@@ -88,6 +90,12 @@ public class ServicioControlador {
 	}
 	
 	public List<SelectItem> getListaservicios() {
+		this.listaservicios = new ArrayList<SelectItem>();
+		listaservicios.clear();
+		for (Servicio cat : servicios){
+			SelectItem catItem = new SelectItem(cat.getCodigo(), cat.getNombreServicio());
+			this.listaservicios.add(catItem);
+		}
 		return listaservicios;
 	}
 
