@@ -16,11 +16,16 @@ import ec.edu.ups.app.data.PersonaDAO;
 import ec.edu.ups.app.data.UsuarioDAO;
 import ec.edu.ups.app.model.Persona;
 import ec.edu.ups.app.model.Usuario;
+import ec.edu.ups.app.util.SessionUtils;
 
 @ManagedBean
 @ViewScoped	
 public class PersonaControlador {
 	
+	@Inject // inyectamos la dependencia
+	private SessionUtils session;
+	private String username; 
+	 
 	private Persona persona;
 	private List<Persona> personas;
 	private List<SelectItem> listpersonas;
@@ -48,6 +53,9 @@ public class PersonaControlador {
 		persona=new Persona();
 		usuario=new Usuario();
 		System.out.println("holaaaaaaproveddorinit");
+		System.out.println("usuarioLogueado");
+		username=session.get("usuarioLogueado");
+		System.out.println(username);
 		loadPersonas();
 	}
 
@@ -254,7 +262,13 @@ public class PersonaControlador {
 			System.out.println(tipo);
 			if (tipo==null){
 				System.out.println("holaaaaaanulll");
-				//personas = pdao.listadoPersonas();
+				System.out.println(username); 
+				usuario = udao.getUsuariocli(username).get(0);
+				System.out.println(usuario);
+				persona = usuario.getPersona();
+				System.out.println(persona);
+				personas = pdao.listadoPersonascli(persona.getCedula());
+				System.out.println(persona);
 			}else{
 				if (tipo.equals("p")){
 					System.out.println("holaaaaaaproveedoraaaa");

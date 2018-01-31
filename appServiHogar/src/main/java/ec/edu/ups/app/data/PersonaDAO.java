@@ -47,7 +47,16 @@ public class PersonaDAO {
 			Query query = em.createQuery(jpql, Persona.class);
 			listado = query.getResultList();
 		}
-		
+	
+		return listado;
+	} 
+	
+	public List<Persona> listadoPersonascli(String cedula){
+		System.out.println("holaaaapersonas");
+		List<Persona> listado = new ArrayList<Persona>();
+		String jpql = "SELECT p FROM Persona p WHERE p.cedula=cedula";
+		Query query = em.createQuery(jpql, Persona.class);
+		listado = query.getResultList();
 		return listado;
 	} 
 	
