@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.fissare">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activities.init.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.ClientActivity"
+            android:label="@string/title_client"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.ProviderActivity"
+            android:label="@string/title_provider"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.init.InitAs"
+            android:label="@string/title_init_as" />
+        <activity
+            android:name=".activities.init.LoginClient"
+            android:label="@string/title_login_client" />
+        <activity
+            android:name=".activities.init.LoginProvider"
+            android:label="@string/title_login_provider" />
+        <activity
+            android:name=".activities.init.RegisterClient"
+            android:label="@string/title_register_client" />
+        <activity
+            android:name=".activities.init.RegisterProvider"
+            android:label="@string/title_register_provider" />
+        <activity
+            android:name=".activities.ServiceCategory"
+            android:label="@string/title_service_category" />
+        <activity
+            android:name=".activities.Pedidos"
+            android:label="@string/title_pedidos"/>
+    </application>
+
+</manifest>
