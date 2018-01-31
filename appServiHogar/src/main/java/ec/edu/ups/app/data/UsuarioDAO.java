@@ -38,10 +38,25 @@ public class UsuarioDAO {
 		return p;
 	}
 	
+	public Usuario leer_username (String username){
+		System.out.println("holaaaaaarecuperacion usuarioDAO");
+		Usuario p = em.find(Usuario.class, username);
+		System.out.println(p);
+		return p;
+	}
+	
 	public List<Usuario> listadoUsuarios(){
 		String jpql = "SELECT p FROM Usuario p";
 		Query query = em.createQuery(jpql, Usuario.class);
 		List<Usuario> listado = query.getResultList();
+		return listado;
+	} 
+	
+	public List<Usuario> getUsuariocli(String Username){
+		String jpql = "SELECT u FROM Usuario u WHERE u.username= :username";
+		Query q = em.createQuery(jpql);
+		q.setParameter("username", Username);
+		List<Usuario> listado = q.getResultList();
 		return listado;
 	} 
 	
