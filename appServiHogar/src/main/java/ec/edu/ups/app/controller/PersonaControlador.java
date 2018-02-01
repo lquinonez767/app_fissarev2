@@ -16,6 +16,7 @@ import ec.edu.ups.app.data.PersonaDAO;
 import ec.edu.ups.app.data.UsuarioDAO;
 import ec.edu.ups.app.model.Persona;
 import ec.edu.ups.app.model.Usuario;
+import ec.edu.ups.app.service.NotificacionFAC;
 import ec.edu.ups.app.util.SessionUtils;
 
 @ManagedBean
@@ -200,6 +201,8 @@ public class PersonaControlador {
 					System.out.println("HolaaaaaaaaaUsuario");
 					System.out.println(usuario);
 					udao.guardar(usuario);
+					NotificacionFAC nf=new NotificacionFAC();
+					nf.enviarEmail("lenin.quinonez@taurustech.ec", "@quinonez@25", persona.getEmail(), "Notificacion Cuenta Fissare Cliente", "Su registro fue exitoso");
 					return "RegistroExitoso";
 				}
 				
@@ -230,6 +233,8 @@ public class PersonaControlador {
 					System.out.println("HolaaaaaaaaaUsuario");
 					System.out.println(usuario);
 					udao.guardar(usuario);
+					NotificacionFAC nf=new NotificacionFAC();
+					nf.enviarEmail("lenin.quinonez@taurustech.ec", "@quinonez@25", persona.getEmail(), "Notificacion Cuenta Fissare Cliente", "Su registro fue exitoso");
 					return "RegistroExitoso";
 				}
 				
