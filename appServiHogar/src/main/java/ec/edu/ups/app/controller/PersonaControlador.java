@@ -138,6 +138,8 @@ public class PersonaControlador {
 	//funciones
 	public String editar(){
 		try{
+			System.out.println("holaaaaaaeditarcliente");
+			System.out.println(persona);
 			if(this.id!=null){
 				System.out.println(persona);
 				pdao.guardar(persona);

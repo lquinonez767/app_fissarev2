@@ -11,7 +11,10 @@ import javax.inject.Inject;
 
 import ec.edu.ups.app.data.PedidoDAO;
 import ec.edu.ups.app.data.PersonaDAO;
+import ec.edu.ups.app.data.UsuarioDAO;
 import ec.edu.ups.app.model.Pedido;
+import ec.edu.ups.app.model.Persona;
+import ec.edu.ups.app.model.Usuario;
 import ec.edu.ups.app.util.SessionUtils;
 
 @ManagedBean
@@ -24,6 +27,10 @@ public class PedidoControlador {
 	
 	private Pedido pedido;
 	
+	private Usuario usuario;
+	
+	private Persona persona;
+	
 	private List<Pedido> pedidos;
 	private String id;
 	
@@ -35,6 +42,9 @@ public class PedidoControlador {
 	
 	@Inject
 	private PersonaDAO pdao;
+	
+	@Inject
+	private UsuarioDAO udao;
 	
 	
 	@PostConstruct
@@ -51,6 +61,30 @@ public class PedidoControlador {
 	
 	public Pedido getPedido() {
 		return pedido;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Persona getPersona() {
+		return persona;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+
+	public UsuarioDAO getUdao() {
+		return udao;
+	}
+
+	public void setUdao(UsuarioDAO udao) {
+		this.udao = udao;
 	}
 
 	public void setPedido(Pedido pedido) {
@@ -123,6 +157,27 @@ public class PedidoControlador {
 		
 	}
 	
+	public String editarPedidoCli(){
+		try{
+			if(this.id!=null){
+				System.out.println("Holaaaaaaaaapedido");
+				//System.out.println(pedido);
+				pedidodao.guardar(pedido);
+				loadPedidos();
+				return "listarPedidocli";
+			}else{
+				pedidodao.insertar(pedido);
+				return "RegistroPedido";
+			}
+		}catch(Exception e){
+			String errorMessage = getRootErrorMessage(e);
+            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
+            facesContext.addMessage(null, m);
+            return null; 
+		}
+		
+	}
+	
 	public String guardar(String itemPersona){
 		try{ 
 			System.out.println("Holaaaaaaaaa");
@@ -138,6 +193,25 @@ public class PedidoControlador {
 				return "listarPedido";
 			}
 			
+		}catch(Exception e){
+			String errorMessage = getRootErrorMessage(e);
+            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
+            facesContext.addMessage(null, m);
+            return null; 
+		}
+		
+	}
+	
+	public String guardarPedidocli(String itemPersona){
+		try{ 
+			System.out.println("Holaaaaaaaaacli");
+			System.out.println(pedido);
+			System.out.println(itemPersona);
+			pedido.setPersona(pdao.leer(itemPersona));
+			System.out.println(pedido);
+			pedidodao.guardar(pedido);
+			loadPedidos();
+			return "listarPedidocli";
 		}catch(Exception e){
 			String errorMessage = getRootErrorMessage(e);
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
@@ -170,7 +244,15 @@ public class PedidoControlador {
 	private void loadPedidos() {
 		System.out.println("holaaaaaapedidos");
 		System.out.println(session);
-		pedidos = pedidodao.listadoPedidos();
+		System.out.println(username);
+		if (username.isEmpty()){
+			pedidos = pedidodao.listadoPedidos();
+		}else{
+			usuario = udao.getUsuariocli(username).get(0);
+			persona = usuario.getPersona();
+			pedidos = pedidodao.listadoPedidoscli(persona);
+		}
+		
 	}
 	
 	public String eliminar(int codigo){

@@ -45,11 +45,7 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">Acciones</f:facet>
-					<a href="editarPedido.xhtml?id=#{pedido.codigo}">Editar</a>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Acciones</f:facet>
-					<h:commandButton action="#{pedidoControlador.loadDatosEliminar(pedido.codigo)}" value="Borrar" class="btn btn-primary btn-round"/>
+					<a href="editarPedidocli.xhtml?id=#{pedido.codigo}">Editar</a>
 				</h:column>
 			</h:dataTable>
 

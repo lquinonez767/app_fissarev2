@@ -1,5 +1,6 @@
 package ec.edu.ups.app.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -33,7 +34,6 @@ public class PedidoDAO {
 		Pedido p = em.find(Pedido.class, codigo);
 		return p;
 	}
-		
 	
 	public List<Pedido> listadoPedidos(){
 		String jpql = "SELECT p FROM Pedido p";
@@ -41,6 +41,15 @@ public class PedidoDAO {
 		List<Pedido> listado = query.getResultList();
 		return listado;
 	} 
+	
+	public List<Pedido> listadoPedidoscli(Persona per){
+		String jpql = "SELECT p FROM Pedido p WHERE p.persona= :persona";
+		Query q = em.createQuery(jpql);
+		 q.setParameter("persona", per);
+		List<Pedido> listado = q.getResultList();
+		return listado;
+	} 
+	
 	
 	public void guardar(Pedido pedido){
 		Pedido p = leer(pedido.getCodigo());
