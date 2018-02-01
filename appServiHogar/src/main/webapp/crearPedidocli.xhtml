@@ -19,13 +19,13 @@
                         
                         	<h5>
                         		<h:outputLabel value="Numero Pedido:" />
-	                            <h:inputText type="text" value="#{pedidoControlador.pedido.codigo}" class="form-control" id="pedido"/>
+	                            <h:inputText type="text" value="#{pedidoControlador.pedido.codigo}" class="form-control" id="pedido" disabled="true"/>
 	                            <h:message for="pedido"/>
 	                        </h5>
                         <div  style="text-align: center;">
 	                     <h:panelGrid columns="3" style="margin: 0 auto;">
 	                            <h:outputLabel value="Cliente:" />
-	    						<h:selectOneMenu id="cliente" value="#{personaControlador.persona.cedula}">
+	    						<h:selectOneMenu id="cliente" value="#{personaControlador.persona.cedula}" disabled="true">
 	    							<f:selectItem itemLabel="-- Seleccione --" itemValue=""/>
 	    							<f:selectItems value="#{personaControlador.listpersonas}"/>
 	    						</h:selectOneMenu>
@@ -49,11 +49,8 @@
 	                        	</h:inputText>
 	                            <h:message for="hora"/>
 	                            <h:outputLabel value="Estado:" />
-	    						<h:selectOneMenu id="estado" value="#{pedidoControlador.pedido.estado}">
-	    							<f:selectItem itemLabel="-- Seleccione --" itemValue=""/>
+	    						<h:selectOneMenu id="estado" value="#{pedidoControlador.pedido.estado}" disabled="true">
 	    							<f:selectItem itemLabel="Solicitado" itemValue="Solicitado"/>
-	    							<f:selectItem itemLabel="Aprobado" itemValue="Aprobado"/>
-	    							<f:selectItem itemLabel="Realizado" itemValue="Realizado"/>
 	    						</h:selectOneMenu>
 	                            <h:message for="estado"/>
 	                            
