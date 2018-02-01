@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="ClientePage.xhtml">
+	<ui:define name="contenido_admin">
+		<f:metadata>
+			<f:viewParam name="id" value="#{pedidoControlador.id}"/>
+		</f:metadata>
+		<h:form >
+		<br/>
+			<div  style="text-align: center;">
+            	<h3 class="title">Edición y Actualzación de Pedidos</h3>
+                <h5 class="description">Miles de clientes y proveedores sabrán de ti y de tu experiencia. Registrate ya.</h5>
+            </div>
+		
+			<h:messages globalOnly="True"/>
+			<h:panelGrid columns="3" style="margin: 0 auto;">
+	                           	<h:outputLabel value="Numero:" />
+	                            <h:inputText type="text" value="#{pedidoControlador.pedido.codigo}" class="form-control" id="codigo" disabled="true"/>
+	                            <h:message for="codigo"/>
+	                        	<h:outputLabel value="Cliente:" />
+	    						<h:selectOneMenu id="cliente" value="#{personaControlador.persona.cedula}" disabled="true">
+	    							<f:selectItems value="#{personaControlador.listpersonas}"/>
+	    						</h:selectOneMenu>
+	    						<h:message for="cliente"/>
+	    						
+	    						<h:outputLabel value="Servicio:" />
+	    						<h:selectOneMenu id="servicio" value="#{servicioControlador.servicio.codigo}" disabled="true">
+	    							<f:selectItems value="#{servicioControlador.listaservicios}"/>
+	    						</h:selectOneMenu>
+	    						<h:message for="servicio"/>
+	    						
+	                            <h:outputLabel value="Fecha:" />
+	                        	<h:inputText value="#{pedidoControlador.pedido.fecha}" class="form-control" id="fecha" disabled="true">
+	                        		<f:convertDateTime pattern="dd/MM/yyyy" />
+	                        	</h:inputText>
+	                            <h:message for="fecha"/>
+	                            <h:outputLabel value="Hora:" />
+	                            <h:inputText value="#{pedidoControlador.pedido.hora}" class="form-control" id="hora" disabled="true">
+	                        		<f:convertDateTime type="time" dateStyle="full"/>
+	                        	</h:inputText>
+	                            <h:message for="hora"/>
+	                            <h:outputLabel value="Estado:" />
+	    						<h:selectOneMenu id="estado" value="#{pedidoControlador.pedido.estado}">
+	    							<f:selectItem itemLabel="Aprobado" itemValue="Aprobado"/>
+	    							<f:selectItem itemLabel="Realizado" itemValue="Realizado"/>
+	    							<f:selectItem itemLabel="Cancelado" itemValue="Realizado"/>
+	    						</h:selectOneMenu>
+	                            <h:message for="estado"/>
+	    						
+	                            <br/>
+	                            <h:commandButton class="btn btn-primary btn-round" action="#{pedidoControlador.editarPedidoCli()}" value="Editar"/>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+	</ui:composition>
+</html>

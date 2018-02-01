@@ -49,13 +49,13 @@
 	                        	</h:inputText>
 	                            <h:message for="hora"/>
 	                            <h:outputLabel value="Estado:" />
-	    						<h:selectOneMenu id="estado" value="#{pedidoControlador.pedido.estado}" disabled="true">
+	    						<h:selectOneMenu id="estado" value="#{pedidoControlador.pedido.estado}">
 	    							<f:selectItem itemLabel="Solicitado" itemValue="Solicitado"/>
 	    						</h:selectOneMenu>
 	                            <h:message for="estado"/>
 	                            
 	                            <br/>
-	                            <h:commandButton class="btn btn-primary btn-round" action="#{pedidoControlador.guardar(personaControlador.persona.cedula)}" value="Crear Pedido"/>
+	                            <h:commandButton class="btn btn-primary btn-round" action="#{pedidoControlador.guardarPedidocli(personaControlador.persona.cedula)}" value="Crear Pedido"/>
 	                            
 	                    </h:panelGrid>      
                         </div>      
