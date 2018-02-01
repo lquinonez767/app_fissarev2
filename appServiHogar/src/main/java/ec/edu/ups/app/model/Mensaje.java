@@ -7,8 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -29,19 +29,13 @@ public class Mensaje {
 	private String descripcion;
 	
 	//bi-directional many-to-one association to Pedido
-	//@ManyToOne(fetch=FetchType.LAZY)
+	//@OneToMany(fetch=FetchType.LAZY)
 	//@JoinColumn(name="codigo")
 	//private Pedido pedido;
 		
 		
 
-	//public Pedido getPedido() {
-	//		return pedido;
-	//	}
-
-	//	public void setPedido(Pedido pedido) {
-//			this.pedido = pedido;
-//		}
+	
 
 	public int getCodigo() {
 		return codigo;

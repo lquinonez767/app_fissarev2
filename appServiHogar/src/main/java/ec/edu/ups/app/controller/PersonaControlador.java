@@ -53,8 +53,8 @@ public class PersonaControlador {
 		persona=new Persona();
 		usuario=new Usuario();
 		System.out.println("holaaaaaaproveddorinit");
-		System.out.println("usuarioLogueado");
-		username=session.get("usuarioLogueado");
+		System.out.println("usuarioLogueadoinit");
+		System.out.println(tipo);
 		System.out.println(username);
 		loadPersonas();
 	}
@@ -92,6 +92,8 @@ public class PersonaControlador {
 	public void setPdao(PersonaDAO pdao) {
 		this.pdao = pdao;
 	}
+	
+	
 	
 
 	public List<SelectItem> getListpersonas() {
@@ -259,26 +261,38 @@ public class PersonaControlador {
 		
 		
 		private void loadPersonas() {
-			System.out.println(tipo);
-			if (tipo==null){
-				System.out.println("holaaaaaanulll");
-				System.out.println(username); 
-				usuario = udao.getUsuariocli(username).get(0);
-				System.out.println(usuario);
-				persona = usuario.getPersona();
-				System.out.println(persona);
-				personas = pdao.listadoPersonascli(persona.getCedula());
-				System.out.println(persona);
-			}else{
-				if (tipo.equals("p")){
-					System.out.println("holaaaaaaproveedoraaaa");
-					personas = pdao.listadoPersonas(tipo);
+			try{
+				System.out.println(tipo);
+				username=session.get("usuarioLogueado");
+				if (tipo==null){
+					System.out.println("holaaaaaanulll");
+					//System.out.println(username); 
+					if (username == null){
+						System.out.println("holaaaaaanulll11111");
+						personas = pdao.listadoPersonascli(persona.getCedula());
+						System.out.println(persona);
+					}else{
+						System.out.println("holaaaaaanulll2222");
+						usuario = udao.getUsuariocli(username).get(0);
+						System.out.println(usuario);
+						persona = usuario.getPersona();
+						System.out.println(persona);
+						personas = pdao.listadoPersonascli(persona.getCedula());
+						System.out.println(persona);
+					}
+				}else{
+					if (tipo.equals("p")){
+						System.out.println("holaaaaaaproveedoraaaa");
+						personas = pdao.listadoPersonas(tipo);
+					}
+					if (tipo.equals("c")){
+						System.out.println("holaaaaaacliente");
+						personas = pdao.listadoPersonas(tipo);
+					}
+					System.out.println("holaaaaaaclientefin");
 				}
-				if (tipo.equals("c")){
-					System.out.println("holaaaaaacliente");
-					personas = pdao.listadoPersonas(tipo);
-				}
-				System.out.println("holaaaaaaclientefin");
+			}catch(Exception e){
+				e.printStackTrace(); 
 			}
 		}
 		
