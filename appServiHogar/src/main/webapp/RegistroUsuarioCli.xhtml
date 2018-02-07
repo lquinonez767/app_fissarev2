@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="plantillaFront.xhtml">
+		<ui:define name="tituloPrincipal">Fissare</ui:define>
+		<ui:define name="tituloSecundario">Hace tu vida más fácil ! </ui:define>
+		<ui:define name="contenido">
+		<f:metadata>
+			<f:viewParam name="tipo" value="#{personaControlador.tipo}"/>
+		</f:metadata>
+		<h:form>
+			<div style="text-align: center;">
+                        <div  style="text-align: center;">
+                            <h3 class="title">Registro Usuario Cliente</h3>
+                        </div>
+                        <div  style="text-align: center;">
+                        <h:panelGrid columns="3" style="margin: 0 auto;">
+	                           	<h:outputLabel value="Cedula:" />
+	                            <h:inputText type="text" value="#{personaControlador.persona.cedula}" class="form-control" id="cedula"/>
+	                            <h:message for="cedula"/>
+	                        	<h:outputLabel value="Nombres:" />
+	                            <h:inputText type="text" value="#{personaControlador.persona.nombres}" class="form-control" id="nombres"/>
+	                            <h:message for="nombres"/>	
+	                            <h:outputLabel value="Direccion:" />
+	                            <h:inputText type="text" value="#{personaControlador.persona.direccion}" class="form-control" id="direccion"/>
+	                            <h:message for="direccion"/>	
+	                            <h:outputLabel value="Telefono:" />
+	                            <h:inputText type="text" value="#{personaControlador.persona.telefono}" class="form-control" id="telefono"/>
+	                            <h:message for="telefono"/>
+	                            <h:outputLabel value="Celular:" />
+	                            <h:inputText type="text" value="#{personaControlador.persona.celular}" class="form-control" id="celular"/>
+	                            <h:message for="celular"/>
+	                            <h:outputLabel value="Email:" />
+	                            <h:inputText type="text" value="#{personaControlador.persona.email}" class="form-control" id="email"/>
+	                            <h:message for="email"/>	
+	    						<h:outputLabel value="Categoria:" />
+	    						<h:selectOneMenu id="categoria" value="#{categoriaControlador.categoria.codigo}" class="form-control">
+	    							<f:selectItem itemLabel="-- Seleccione --" itemValue="" class="dropdown-item"/>
+	    							<f:selectItems value="#{categoriaControlador.listcategorias}" class="dropdown-item"/>
+	    						</h:selectOneMenu>
+	    						<br/>
+	                    </h:panelGrid>  
+                        
+                        
+                        
+	                     <h:panelGrid columns="3" style="margin: 0 auto;">
+	                        	<h:outputLabel value="Username:" />
+	                            <h:inputText type="text" value="#{personaControlador.usuario.username}" class="form-control" id="username"/>
+	                            <h:message for="username"/>	
+	                            <h:outputLabel value="Password:" />
+	                            <h:inputText type="text" value="#{personaControlador.usuario.password}" class="form-control" id="password"/>
+	                            <h:message for="password"/>	
+	                            <h:outputLabel value="Rol:" />
+	                            <h:selectOneMenu id="rol" value="#{personaControlador.usuario.rolUsuario}" class="form-control">
+	                            	<f:selectItem itemLabel="Cliente" itemValue="cliente"/>
+	                            </h:selectOneMenu>	
+	                            <h:message for="rol"/>
+	                            <br/>
+	    						<h:commandButton class="btn btn-primary btn-round" action="#{personaControlador.guardar_front(categoriaControlador.categoria.codigo)}" value="Ingresar"/>			
+	                            
+	                    </h:panelGrid>      
+                        </div>      
+                    </div>
+                    
+            </h:form>        
+		</ui:define>
+	</ui:composition>
+</html>

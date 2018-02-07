@@ -1,14 +1,16 @@
 package ec.edu.ups.app.model;
 
-import java.util.List;
-
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -17,43 +19,59 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name="tbl_servicio")
-public class Servicio {
-
+@NamedQuery(name="Servicio.findAll", query="SELECT s FROM Servicio s")
+public class Servicio implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
-	@NotNull
-	@NotBlank
-	@Size(min=5, max=5)
-	@Column(name="ser_codigo")
-	private String codigo;
+	@NotNull(message="Campo requerido")
+	@Column(name = "ser_codigo", updatable = false, nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int codigo;
 	
-	@NotBlank
-	@Size(min=4, max=20)
-	@Column(name="ser_nombre")
-	private String nombre;
+	@NotBlank(message="Campo requerido")
+	@Size(min=4, max=50, message="Debe contener entre 4 y 60 caracteres")
+	@Column(name="ser_nombre_servicio")
+	private String nombreServicio;
 	
-	@NotBlank
-	@Size(min=4, max=20)
+	@NotBlank(message="Campo requerido")
+	@Size(min=4, max=100, message="Debe contener entre 4 y 100 caracteres")
 	@Column(name="ser_descripcion")
 	private String descripcion;
 
-	private double price;
+	@Column(name="ser_valor_servicio")
+	private int valorServicio;
 	
-	// get an set
 	
-	public String getCodigo() {
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="codigo", nullable=false)
+	private CategoriaServicio categoriaservicio;
+/*	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="codigoPedido", nullable=false)
+	private Pedido pedido;
+	
+	*/
+	
+	
+	// getters and setters ------------------------
+	
+	public int getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(String codigo) {
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombreServicio() {
+		return nombreServicio;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreServicio(String nombreServicio) {
+		this.nombreServicio = nombreServicio;
 	}
 
 	public String getDescripcion() {
@@ -64,24 +82,29 @@ public class Servicio {
 		this.descripcion = descripcion;
 	}
 
-	public double getPrice() {
-		return price;
+	public int getValorServicio() {
+		return valorServicio;
 	}
 
-	public void setPrice(double price) {
-		this.price = price;
+	public void setValorServicio(int ValorServicio) {
+		this.valorServicio = ValorServicio;
 	}
 
+	public CategoriaServicio getCategoriaservicio() {
+		return categoriaservicio;
+	}
+
+	public void setCategoriaservicio(CategoriaServicio categoriaservicio) {
+		this.categoriaservicio = categoriaservicio;
+	}
+
+		
+	
 	@Override
 	public String toString() {
-		return "Servicio [codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", price=" + price
-				+ "]";
+		return "Servicio [codigo=" + codigo + ", nombreServicio=" + nombreServicio + ", descripcion=" + descripcion
+				+ ", valorServicio=" + valorServicio + ", categoriaservicio=" + categoriaservicio + "]";
 	}
-	
-	
-	
-	
-	
-	
+		
 	
 }

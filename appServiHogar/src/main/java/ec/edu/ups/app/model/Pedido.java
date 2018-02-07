@@ -1,10 +1,13 @@
 package ec.edu.ups.app.model;
 
+
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,14 +22,19 @@ import javax.validation.constraints.NotNull;
 public class Pedido {
 	
 	@Id
-	@Column(name="ped_codigo",length=10)
-	@NotNull
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ped_codigo", updatable = false, nullable = false)
 	private int codigo;
 	
 	@Column(name="ped_fecha")
 	@Temporal(TemporalType.DATE)
 	@NotNull(message="Ingrese la fecha")
 	private Date fecha;
+	
+	@Column(name="ped_hora")
+	@Temporal(TemporalType.TIME)
+	@NotNull(message="Ingrese la fecha")
+	private Date hora;
 	
 	@Column(name="ped_estado")
 	private String estado;
@@ -36,7 +44,21 @@ public class Pedido {
 	@JoinColumn(name="cedula")
 	private Persona persona;
 	
+	//bi-directional many-to-one association to Persona
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="codigo")
+	private Servicio servicio;
 	
+	
+	
+	public Servicio getServicio() {
+		return servicio;
+	}
+
+	public void setServicio(Servicio servicio) {
+		this.servicio = servicio;
+	}
+
 	public Persona getPersona() {
 		return persona;
 	}
@@ -68,12 +90,22 @@ public class Pedido {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-
 	
+	public Date getHora() {
+		return hora;
+	}
+
+	public void setHora(Date hora) {
+		this.hora = hora;
+	}
+
 	@Override
 	public String toString() {
-		return "Pedido [codigo=" + codigo + ", fecha=" + fecha + ", estado=" + estado + "]";
+		return "Pedido [codigo=" + codigo + ", fecha=" + fecha + ", hora=" + hora + ", estado=" + estado + ", persona="
+				+ persona + "]";
 	}
+
+	
 	
 	
 	

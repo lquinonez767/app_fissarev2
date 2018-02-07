@@ -10,23 +10,34 @@
 			<f:viewParam name="id" value="#{servicioControlador.id}"/>
 		</f:metadata>
 		<h:form >
-			<h:inputText value="#{servicioControlador.id}" />
+			
+			<div  style="text-align: center;">
+                <h3 class="title">Editar Servicios</h3>
+            </div>
+			
 			<h:messages globalOnly="True"/>
 			<h:panelGrid columns="3" style="margin: 0 auto;">
-	                           	<h:outputLabel value="Codigo:" />
-	                            <h:inputText type="text" value="#{servicioControlador.servicio.codigo}" class="form-control" id="codigo"/>
-	                            <h:message for="codigo"/>
-	                        	<h:outputLabel value="Nombre:" />
-	                            <h:inputText type="text" value="#{servicioControlador.servicio.nombre}" class="form-control" id="nombre"/>
-	                            <h:message for="nombre"/>	
-	              				<h:outputLabel value="Descripcion:" />
-	                            <h:inputText type="text" value="#{servicioControlador.servicio.descripcion}" class="form-control" id="descripcion"/>
-	                            <h:message for="descripcion"/>
-	                            <h:outputLabel value="Precio:" />
-	                            <h:inputText type="text" value="#{servicioControlador.servicio.price}" class="form-control" id="precio"/>
-	                            <h:message for="precio"/>
-	                            <br/>
-	                            <h:commandButton class="btn btn-primary btn-round" action="#{servicioControlador.editar()}" value="Editar"/>
+            	<h:outputLabel value="Codigo:" />
+                <h:inputText type="text" value="#{servicioControlador.servicio.codigo}" class="form-control" id="codigo"/>
+                <h:message for="codigo"/>
+              	<h:outputLabel value="Nombre:" />
+                <h:inputText type="text" value="#{servicioControlador.servicio.nombreServicio}" class="form-control" id="nombre"/>
+                <h:message for="nombre"/>	
+    			<h:outputLabel value="Descripcion:" />
+                <h:inputText type="text" value="#{servicioControlador.servicio.descripcion}" class="form-control" id="descripcion"/>
+                <h:message for="descripcion"/>
+                <h:outputLabel value="Valor:" />
+                <h:inputText type="text" value="#{servicioControlador.servicio.valorServicio}" class="form-control" id="valor"/>
+                <h:message for="valor"/>
+                
+                <h:outputLabel value="Categoría Servicios:" />
+                <h:selectOneMenu id="categoriaservicio" value="#{categoriaSrvControlador.catservicio.codigo}">
+                	<f:selectItem itemLabel="-- Seleccione --" itemValue=""/>
+                	<f:selectItems value="#{categoriaSrvControlador.listacategoriaservicios}" />
+                </h:selectOneMenu>
+                <br />
+                <h:commandButton class="btn btn-primary btn-round" action="#{servicioControlador.editar()}" value="Editar"/>
+                
 			</h:panelGrid>
 		</h:form>
 	</ui:define>

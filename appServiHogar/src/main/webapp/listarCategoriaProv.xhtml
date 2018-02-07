@@ -10,33 +10,33 @@
 			<br/>
 			<div class="col-sm-6 col-lg-3">
             	<div class="input-group">
-                	<h:inputText value="#{categoriaProvControlador.id}" type="text" class="form-control"/>
+                	<h:inputText value="#{categoriaControlador.id}" type="text" class="form-control"/>
                     <span class="input-group-addon">
                     	<i class="now-ui-icons ui-1_zoom-bold"></i>
               		</span>
            		</div>
-           		<h:commandButton action="#{categoriaProvControlador.loadDatosBuscar()}" value="Buscar" class="btn btn-primary btn-round">
-						<f:ajax render="listaCategoriaProv"/>
+           		<h:commandButton action="#{categoriaControlador.loadDatosBuscar()}" value="Buscar" class="btn btn-primary btn-round">
+						<f:ajax render="listaCategoria"/>
 			    </h:commandButton>
       		</div>
 			<br/>
-			<h:outputText value="No existen Registros" rendered="#{empty categoriaProvControlador.catproveedores}" />
-			<h:dataTable id="listaCatProv" value="#{categoriaProvControlador.catproveedores}" var="catproveedor" rendered="#{not empty categoriaProvControlador.catproveedores}" border-collapse="collapse" width="100%">
+			<h:outputText value="No existen Registros" rendered="#{empty categoriaControlador.categoria}" />
+			<h:dataTable id="listaCatProv" value="#{categoriaControlador.categorias}" var="catpersona" rendered="#{not empty categoriaControlador.categorias}" border-collapse="collapse" width="100%">
 				<h:column>
 					<f:facet name="header">Codigo</f:facet>
-					#{catproveedor.codigo}
+					#{catpersona.codigo}
 				</h:column>
 				<h:column>
 					<f:facet name="header">Nombre</f:facet>
-					#{catproveedor.nombre}
+					#{catpersona.descripcion}
 				</h:column>
 				<h:column>
 					<f:facet name="header">Acciones</f:facet>
-					<a href="editarCategoriaProv.xhtml?id=#{catproveedor.codigo}">Editar</a>
+					<a href="editarCategoriaProv.xhtml?id=#{catpersona.codigo}">Editar</a>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Acciones</f:facet>
-					<h:commandButton action="#{categoriaProvControlador.loadDatosEliminar(catproveedor.codigo)}" value="Borrar" class="btn btn-primary btn-round"/>
+					<h:commandButton action="#{categoriaControlador.loadDatosEliminar(catpersona.codigo)}" value="Borrar" class="btn btn-primary btn-round"/>
 				</h:column>
 			</h:dataTable>
 

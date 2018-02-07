@@ -15,13 +15,13 @@
                         <div  style="text-align: center;">
 	                     <h:panelGrid columns="3" style="margin: 0 auto;">
 	                           	<h:outputLabel value="Codigo:" />
-	                            <h:inputText type="text" value="#{categoriaProvControlador.catproveedor.codigo}" class="form-control" id="codigo"/>
+	                            <h:outputLabel type="text" value="#{categoriaControlador.categoria.codigo}" class="form-control" id="codigo"/>
 	                            <h:message for="codigo"/>
 	                        	<h:outputLabel value="Nombre:" />
-	                            <h:inputText type="text" value="#{categoriaProvControlador.catproveedor.nombre}" class="form-control" id="nombre"/>
+	                            <h:inputText type="text" value="#{categoriaControlador.categoria.descripcion}" class="form-control" id="nombre"/>
 	                            <h:message for="nombre"/>	
 	                            
-	                            <h:commandButton class="btn btn-primary btn-round" action="#{categoriaProvControlador.guardar()}" value="Ingresar"/>
+	                            <h:commandButton class="btn btn-primary btn-round" action="#{categoriaControlador.guardar()}" value="Ingresar"/>
 	                            
 	                    </h:panelGrid>      
                         </div>      

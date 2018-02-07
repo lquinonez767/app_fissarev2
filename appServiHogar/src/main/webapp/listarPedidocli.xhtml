@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="ClientePage.xhtml">
+		<ui:define name="contenido_admin">
+		<h:form>
+			<br/>
+			<div class="col-sm-6 col-lg-3">
+            	<div class="input-group">
+                	<h:inputText value="hola" type="text" class="form-control"/>
+                    <span class="input-group-addon">
+                    	<i class="now-ui-icons ui-1_zoom-bold"></i>
+              		</span>
+           		</div>
+           		<h:commandButton action="#{pedidoControlador.loadDatosBuscar(pedido.codigo)}" value="Buscar" class="btn btn-primary btn-round">
+						<f:ajax render="listaPedidos"/>
+			    </h:commandButton>
+      		</div>
+			<br/>
+			<div  style="text-align: center;">
+            	<h3 class="title">Listado de Pedidos por Estados</h3>
+                <h5 class="description">Miles de clientes y proveedores sabrán de ti y de tu experiencia. Registrate ya.</h5>
+            </div>
+            <h:message for="usuario"/>	
+			<h:outputText value="No existen Registros" rendered="#{empty pedidoControlador.pedido}" />
+			<h:dataTable id="listaPedidos" value="#{pedidoControlador.pedidos}" var="pedido" rendered="#{not empty  pedidoControlador.pedidos}" border-collapse="collapse" width="100%">
+				<h:column>
+					<f:facet name="header">Numero</f:facet>
+					#{pedido.codigo}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Fecha</f:facet>
+					#{pedido.fecha}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Hora</f:facet>
+					#{pedido.hora}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Estado</f:facet>
+					#{pedido.estado}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Acciones</f:facet>
+					<a href="editarPedidocli.xhtml?id=#{pedido.codigo}">Editar</a>
+				</h:column>
+			</h:dataTable>
+
+		</h:form>
+		</ui:define>
+	</ui:composition>
+</html>

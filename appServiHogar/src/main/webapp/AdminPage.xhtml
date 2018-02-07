@@ -33,7 +33,7 @@
                     <a class="dropdown-header">Administración Proveedores</a>
                     <a class="dropdown-item" href="crearProveedor.xhtml">Crear</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="listarProveedor.xhtml">Listar</a>
+                    <a class="dropdown-item" href="listarProveedor.xhtml?tipo=p">Listar</a>
                 </div>
                 
             </div>
@@ -65,9 +65,9 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-header">Administración Clientes</a>
-                    <a class="dropdown-item" href="#">Crear</a>
+                    <a class="dropdown-item" href="crearProveedor.xhtml">Crear</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Listar</a>
+                    <a class="dropdown-item" href="listarProveedor.xhtml?tipo=c">Listar</a>
                 </div>
                 
             </div>
@@ -82,9 +82,9 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-header">Administración Servicios</a>
-                    <a class="dropdown-item" href="crearServicio.xhtml">Crear</a>
+                    <a class="dropdown-item" href="crearServicio.xhtml">Crear Servicios</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="listarServicio.xhtml">Listar</a>
+                    <a class="dropdown-item" href="listarServicio.xhtml">Listar Servicios</a>
                 </div>
                 
             </div>
@@ -98,16 +98,54 @@
                     <span class="button-bar"></span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-header">Administración Categoría Serv.</a>
-                    <a class="dropdown-item" href="#">Crear</a>
+                    <a class="dropdown-header">Administración Categoría Servicios</a>
+                    <a class="dropdown-item" href="crearCategoriaSrv.xhtml">Crear Categoria Servicios</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Listar</a>
+                    <a class="dropdown-item" href="listarCategoriaServicio.xhtml">Listar Categoria Servicios</a>
                 </div>
                 
             </div>
             <a class="navbar-brand" rel="tooltip" data-placement="bottom">
-                    Cstegoría Serv.	
+                    Categoría Serv.	
             </a>
+            
+            <div class="dropdown button-dropdown">
+                <a href="#pablo" class="dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">
+                    <span class="button-bar"></span>
+                    <span class="button-bar"></span>
+                    <span class="button-bar"></span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-header">Administración Pedidos de Servicios.</a>
+                    <a class="dropdown-item" href="crearPedido.xhtml">Crear</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="listarPedido.xhtml">Listar</a>
+                </div>
+                
+            </div>
+            <a class="navbar-brand" rel="tooltip" data-placement="bottom">
+                    Pedidos.	
+            </a>
+            
+            <div class="dropdown button-dropdown">
+                <a href="#pablo" class="dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">
+                    <span class="button-bar"></span>
+                    <span class="button-bar"></span>
+                    <span class="button-bar"></span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-header">Administración Usuarios</a>
+                    <a class="dropdown-item" href="crearUsuario.xhtml">Crear</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="listarUsuario.xhtml">Listar</a>
+                </div>
+                
+            </div>
+            <a class="navbar-brand" rel="tooltip" data-placement="bottom">
+                    Usuarios.	
+            </a>
+            
+            
             <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="resources/template/assets/img/blurred-image-1.jpg">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -160,7 +198,7 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container" >
         	<ui:insert name="contenido_admin">
        		</ui:insert>
         </div>

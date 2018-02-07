@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
@@ -67,7 +68,7 @@
         <div class="container">
             <div class="col-md-4 content-center">
                 <div class="card card-login card-plain">
-                    <form class="form" method="" action="">
+                    <h:form class="form" method="" action="">
                         <div class="header header-primary text-center">
                             <div class="logo-container">
                                 <img src="resources/template/assets/img/now-logo.png" alt=""/>
@@ -78,18 +79,22 @@
                                 <span class="input-group-addon">
                                     <i class="now-ui-icons users_circle-08"></i>
                                 </span>
-                                <input type="text" class="form-control" placeholder="Usuario"/>
+                         
+                                <h:inputText type="text" value="#{usuarioControlador.usuario.username}" class="form-control" id="username" placeholder="Usuario"/>
+                           
                             </div>
                             <div class="input-group form-group-no-border input-lg">
                                 <span class="input-group-addon">
                                     <i class="now-ui-icons text_caps-small"></i>
                                 </span>
-                                <input type="text" placeholder="Clave" class="form-control" />
+                                
+                                <h:inputText type="text" value="#{usuarioControlador.usuario.password}" class="form-control" id="password"  placeholder="Clave"/>
+                                
                             </div>
                         </div>
                         <div class="footer text-center">
-                            <a href="AdminPage.xhtml" class="btn btn-primary btn-round btn-lg btn-block">Ingresar</a>
-                            <!-- h:commandButton action="AdminPage" value="Ingresar" class="btn btn-primary btn-round btn-lg btn-block" /-->
+                            <h:commandButton action="#{usuarioControlador.login()}" value="Ingresar" class="btn btn-primary btn-round btn-lg btn-block" />
+                            
                         </div>
                         <div class="pull-left">
                             <h6>
@@ -101,7 +106,7 @@
                                 <a href="#pablo" class="link">Ayuda?</a>
                             </h6>
                         </div>
-                    </form>
+                    </h:form>
                 </div>
             </div>
         </div>
