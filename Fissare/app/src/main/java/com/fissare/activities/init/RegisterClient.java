@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,7 +27,8 @@ import java.util.Map;
 public class RegisterClient extends AppCompatActivity {
 
     private static final String TAG = "RegisterClient";
-    private static final String URL_FOR_REGISTRATION = "http://192.168.100.4:8080/appServiHogar/srv/web/registro";
+    //private static final String URL_FOR_REGISTRATION = "http://192.168.100.4:8080/appServiHogar/srv/web/registro";
+    private static final String URL_FOR_REGISTRATION = "http://fissare.ayniwork.com/appServiHogar/srv/web/registro";
     ProgressDialog progressDialog;
 
     private EditText _cedulaText;
@@ -35,6 +37,7 @@ public class RegisterClient extends AppCompatActivity {
     private EditText _phoneText;
     private EditText _mobileText;
     private EditText _emailText;
+    private EditText _passwordText;
 
     private Button _acceptButton;
 
@@ -53,6 +56,7 @@ public class RegisterClient extends AppCompatActivity {
         _phoneText = (EditText) findViewById(R.id.register_client_phone);
         _mobileText = (EditText) findViewById(R.id.register_client_mobile);
         _emailText = (EditText) findViewById(R.id.register_client_email);
+        _passwordText = (EditText) findViewById(R.id.register_client_password);
 
         _acceptButton = (Button) findViewById(R.id.accept_client);
 
@@ -61,7 +65,7 @@ public class RegisterClient extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 register();
-                //startActivity(new Intent(RegisterClient.this, ClientActivity.class));
+                startActivity(new Intent(RegisterClient.this, ClientActivity.class));
                 //Toast.makeText(RegisterClient.this, "Registro Exitoso", Toast.LENGTH_LONG).show();
             }
         });
@@ -74,7 +78,8 @@ public class RegisterClient extends AppCompatActivity {
         registerClient(
                 _cedulaText.getText().toString(), _namesText.getText().toString(),
                 _addressText.getText().toString(), _phoneText.getText().toString(),
-                _mobileText.getText().toString(), _emailText.getText().toString()
+                _mobileText.getText().toString(), _emailText.getText().toString(),
+                _passwordText.getText().toString()
         );
     }
 
@@ -82,7 +87,8 @@ public class RegisterClient extends AppCompatActivity {
 
 
     private void registerClient(final String cedula, final String nombres, final String direccion,
-                                final String telfijo, final String telmovil, final String email){
+                                final String telfijo, final String telmovil, final String email,
+                                final String password){
 
         String cancel_req_tag = "register";
 
@@ -139,6 +145,7 @@ public class RegisterClient extends AppCompatActivity {
                 params.put("telfijo", telfijo);
                 params.put("telmovil", telmovil);
                 params.put("email", email);
+                params.put("password", password);
                 return params;
             }
         };

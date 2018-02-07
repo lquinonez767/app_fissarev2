@@ -13,7 +13,7 @@
     <string name="title_login_provider">Iniciar como Proveedor</string>
     <string name="title_register_client">Registro - Nuevo Cliente</string>
     <string name="title_register_provider">Registro - Nuevo Proveedor</string>
-    <string name="title_service_category">Categorías de Servicio</string>
+    <string name="title_service_category">Servicios:</string>
     <string name="title_pedidos">Pedidos</string>
 
 </resources>

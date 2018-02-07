@@ -1,5 +1,6 @@
 package com.fissare.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,11 +10,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.fissare.R;
+import com.fissare.activities.actions.ServiceCategory;
 
 public class ProviderActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    TextView servicesLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +36,15 @@ public class ProviderActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_provider);
         navigationView.setNavigationItemSelectedListener(this);
+//*
+        servicesLink = (TextView)findViewById(R.id.linkServices);
+
+        servicesLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProviderActivity.this, ServiceCategory.class));
+            }
+        }); //*/
     }
 
     @Override

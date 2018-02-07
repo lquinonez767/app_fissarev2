@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/service_category"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
     android:background="#929ED4"
-    tools:context="com.fissare.activities.ServiceCategory">
+    android:padding="5dp" >
 
     <ExpandableListView
-        android:id="@+id/listServiceCategory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:id="@+id/simple_expandable_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:divider="#000000"
+        android:dividerHeight="1dp" >
     </ExpandableListView>
-
 
 </LinearLayout>

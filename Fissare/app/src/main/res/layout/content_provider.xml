@@ -10,10 +10,12 @@
     tools:showIn="@layout/app_bar_provider">
 
     <TextView
+        android:id="@+id/linkServicesProvider"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FISSARE app \n Provider!"
+        android:text="Servicios!"
         android:textSize="25dp"
+        android:drawableLeft="@drawable/ic_menu_share"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

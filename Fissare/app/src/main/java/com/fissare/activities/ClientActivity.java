@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.fissare.R;
+import com.fissare.activities.actions.Pedidos;
+import com.fissare.activities.actions.ServiceCategory;
 
 public class ClientActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -35,7 +37,7 @@ public class ClientActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_client);
         navigationView.setNavigationItemSelectedListener(this);
-
+//*
         servicesLink = (TextView)findViewById(R.id.linkServices);
 
         servicesLink.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +45,7 @@ public class ClientActivity extends AppCompatActivity
             public void onClick(View v) {
                 startActivity(new Intent(ClientActivity.this, ServiceCategory.class));
             }
-        });
+        }); //*/
     }
 
     @Override
