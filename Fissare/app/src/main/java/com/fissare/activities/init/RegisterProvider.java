@@ -26,8 +26,8 @@ import java.util.Map;
 public class RegisterProvider extends AppCompatActivity {
 
     private static final String TAG = "RegisterProveedor";
-    private static final String URL_FOR_REGISTRATION = "http://192.168.100.4:8080/appServiHogar/srv/web/registro";
-    //private static final String URL_FOR_REGISTRATION = "http://fissare.ayniwork.com/appServiHogar/srv/web/registro";
+    //private static final String URL_FOR_REGISTRATION = "http://192.168.100.4:8080/appServiHogar/srv/web/registro";
+    private static final String URL_FOR_REGISTRATION = "http://fissare.ayniwork.com/appServiHogar/srv/web/registro";
     ProgressDialog progressDialog;
 
     private EditText _cedulaText;
@@ -64,7 +64,7 @@ public class RegisterProvider extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 register();
-                //startActivity(new Intent(RegisterProvider.this, ProviderActivity.class));
+                startActivity(new Intent(RegisterProvider.this, ProviderActivity.class));
                 //Toast.makeText(RegisterProvider.this, "Registro Exitoso", Toast.LENGTH_LONG).show();
             }
         });

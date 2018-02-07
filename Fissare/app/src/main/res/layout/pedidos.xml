@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#929ED4"
-    tools:context="com.fissare.activities.Pedidos">
+    tools:context="com.fissare.activities.actions.Pedidos">
 
     <RelativeLayout
         android:layout_width="match_parent"

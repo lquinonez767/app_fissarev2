@@ -42,10 +42,10 @@
             android:name=".activities.init.RegisterProvider"
             android:label="@string/title_register_provider" />
         <activity
-            android:name=".activities.ServiceCategory"
+            android:name=".activities.actions.ServiceCategory"
             android:label="@string/title_service_category" />
         <activity
-            android:name=".activities.Pedidos"
+            android:name=".activities.actions.Pedidos"
             android:label="@string/title_pedidos"/>
     </application>
 

@@ -1,4 +1,4 @@
-package com.fissare.activities;
+package com.fissare.activities.actions;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,13 +21,13 @@ public class Pedidos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pedidos);
 
-        ListView l = (ListView) findViewById(R.id.listview);
+        ListView listView = (ListView) findViewById(R.id.listview);
         String[] values = new String[] { "Instalaciones Electricas", "Mantenimiento Electrico", "Limpieza",
                 "Reparación", "Reparación de Muebles", "Entablado", "Arreglo de fachadas", "Jardines" };
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, values);
         viewContainer = findViewById(R.id.undobar);
-        l.setAdapter(adapter);
+        listView.setAdapter(adapter);
     }
 
 

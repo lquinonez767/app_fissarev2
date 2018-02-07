@@ -27,8 +27,8 @@ public class LoginProvider extends AppCompatActivity {
     EditText emailBox, passwordBox;
     Button loginButton;
     TextView registerProviderLink;
-    String URL = "http://192.168.100.4:8080/appServiHogar/srv/web/login";
-    //String URL = "http://fissare.ayniwork.com/appServiHogar/srv/web/login";
+    //String URL = "http://192.168.100.4:8080/appServiHogar/srv/web/login";
+    String URL = "http://fissare.ayniwork.com/appServiHogar/srv/web/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
